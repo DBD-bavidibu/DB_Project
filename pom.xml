@@ -66,11 +66,10 @@
 			<version>1.4.1.RELEASE</version>
 		</dependency>
 
-		<!-- MYSQL -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.19</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!--MyBatis -->

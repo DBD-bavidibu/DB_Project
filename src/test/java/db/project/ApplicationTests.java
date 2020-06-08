@@ -1,4 +1,4 @@
-package doroddong.spring_boot;
+package db.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

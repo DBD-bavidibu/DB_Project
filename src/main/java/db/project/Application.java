@@ -1,4 +1,4 @@
-package doroddong.spring_boot;
+package db.project;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@MapperScan(value={"doroddong.spring_boot.board.mapper"})
 public class Application {
 
     public static void main(String[] args) {

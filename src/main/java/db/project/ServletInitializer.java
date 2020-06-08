@@ -1,4 +1,4 @@
-package doroddong.spring_boot;
+package db.project;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
