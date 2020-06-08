@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import javax.sql.DataSource;
 
 @SpringBootApplication
+@MapperScan(value = {"db.project.mvc.mapper"})
 public class Application {
 
     public static void main(String[] args) {
