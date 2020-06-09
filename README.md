@@ -4,21 +4,32 @@
 
 ---
 
-1. Init Database
+1. Connect Database
+    In [application.properties],
+    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/98a02391-9d25-44ca-9a7e-68255658b44e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/98a02391-9d25-44ca-9a7e-68255658b44e/Untitled.png)
+    
+    1. Input your Database url, username,and password
+    
+    
+    In [InitDB.java],
+    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a6b85e0-29ff-4879-a4ad-1a6434d6dcce/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a6b85e0-29ff-4879-a4ad-1a6434d6dcce/Untitled.png)
+    1. Input you Dataabase url, username, password
 
-    [Application.java](http://application.java) 
+2. Init Database
 
-    ![Untitled%20120ea7de9a184e2b802cc993f2afd96c/Untitled.png](Untitled%20120ea7de9a184e2b802cc993f2afd96c/Untitled.png)
+    In [Application.java],
+
+    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4553378f-ca3c-46a8-baf2-9038ef2ff8ac/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4553378f-ca3c-46a8-baf2-9038ef2ff8ac/Untitled.png)
 
      
 
-    1. Drop Tables if not exists (optional)
-    2. Create Tables if not exists (optional)
+    1. Drop Tables if not exists (optional 또는 쉘, admin으로 해도됩니다.)
+    2. Create Tables if not exists (optional 또는 쉘, admin으로 해도됩니다.)
     3. Insert Cities 
     4. Insert Stores
 
-2. Connect Web 
+3. Connect Web 
     1. Run Application.java
     2. Connect "localhost:8080"
 
-    ![Untitled%20120ea7de9a184e2b802cc993f2afd96c/Untitled%201.png](Untitled%20120ea7de9a184e2b802cc993f2afd96c/Untitled%201.png)
+    ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ecb87054-21cb-4d0e-9968-12b29f90cc48/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ecb87054-21cb-4d0e-9968-12b29f90cc48/Untitled.png)
