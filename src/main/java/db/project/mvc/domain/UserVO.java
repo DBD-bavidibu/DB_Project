@@ -2,7 +2,7 @@ package db.project.mvc.domain;
 
 import java.util.Date;
 
-public class User {
+public class UserVO {
     private int user_id;
     private String user_name;
     private String email;
