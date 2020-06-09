@@ -18,7 +18,7 @@ public class Application {
         InitDB initDB=new InitDB();
 //        initDB.dropTable();       //테이블 삭제
 //        initDB.createTables();    //테이블 생성
-        initDB.insertCities();      //City tupes 생성
+//        initDB.insertCities();      //City tupes 생성
         initDB.insertStores();      //Store tuples 생성
     }
 

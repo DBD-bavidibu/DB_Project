@@ -187,6 +187,8 @@ public class InitDB {
                 store_name = converted_store_name;
                 String category = obj.getString("INDUTYPE_NM");
                 String address = obj.getString("REFINE_LOTNO_ADDR");
+                String converted_address=address.replace("\'","\'\'");
+                address=converted_address;
                 float latitude = Float.parseFloat(obj.getString("REFINE_WGS84_LAT"));
                 float longitude = Float.parseFloat(obj.getString("REFINE_WGS84_LOGT"));
                 int city_code = Integer.parseInt(obj.getString("SIGUN_CD"));
@@ -210,7 +212,7 @@ public class InitDB {
 
                 System.out.println(InsertStorePrefix + InsertStoreSuffix);
 
-                statement.execute(InsertStorePrefix + InsertStoreSuffix);
+                statement.executeUpdate(InsertStorePrefix + InsertStoreSuffix);
 
             }
         }
