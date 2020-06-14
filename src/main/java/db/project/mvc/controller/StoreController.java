@@ -65,6 +65,12 @@ public class StoreController {
         return "storeList_UserLike";
     }
 
+//   우리 동네 조회수 높은 순 상점 조회
+    @RequestMapping("/TopFiveViewsStoreList/{userID}")
+    private void TopFiveViewsStorelist(@PathVariable int userID, Model model) throws Exception{
+
+    }
+
 
 //  Like를 DB에 추가
     @RequestMapping(value = "/insertLike/{userID}}/{storeID}")

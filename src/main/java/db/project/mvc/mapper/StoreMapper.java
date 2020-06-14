@@ -20,6 +20,8 @@ public interface StoreMapper {
 
     List<StoreVO> storeList_UserLike(int userID) throws Exception;
 
+
+
     int insertLike(int userID, int storeID) throws Exception;
 
     int deleteLike(int likeID) throws Exception;

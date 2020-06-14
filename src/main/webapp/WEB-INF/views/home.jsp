@@ -29,12 +29,12 @@
                     <th>Date</th>
                 </tr>
                 <c:forEach var="l" items="${list}">
-                    <tr onclick="location.href='/detail/${l.bno}'">
-                        <td>${l.bno}</td>
-                        <td>${l.subject}</td>
-                        <td>${l.writer}</td>
+                    <tr onclick="location.href='/detail/${l.store_id}'">
+                        <td>${l.store_name}</td>
+                        <td>${l.category}</td>
+                        <td>${l.views}</td>
                         <td>
-                            <fmt:formatDate value="${l.reg_date}" pattern="yyyy.MM.dd HH:mm:ss"/>
+<%--                            <fmt:formatDate value="${l.reg_date}" pattern="yyyy.MM.dd HH:mm:ss"/>--%>
                         </td>
                     </tr>
                 </c:forEach>
