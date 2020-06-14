@@ -28,6 +28,18 @@
         where likes.user_id = #{userID}
     </select>
 
+    <select id="getUser" parameterType="int" resultType="db.project.mvc.domain.UserVO">
+        select * from Users where user_id = #{userID}
+    </select>
+
+
+    <select id="TopFiveViewsStorelist" parameterType="float" resultType="db.project.mvc.domain.StoreVO">
+        select * from stores
+        where power(8800*abs(latutude-#{latitude}),2)+power(111000*abs(longitude-#{longitude}),2) &lt; 1]
+        order by views desc limit 10
+    </select>
+
+
 
 
 

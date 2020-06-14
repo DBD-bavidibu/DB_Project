@@ -1,6 +1,7 @@
 package db.project.mvc.mapper;
 
 import db.project.mvc.domain.StoreVO;
+import db.project.mvc.domain.UserVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public interface StoreMapper {
 
     List<StoreVO> storeList_UserLike(int userID) throws Exception;
 
+    UserVO getUser(int userID) throws Exception;
 
+    List<StoreVO> TopFiveViewsStorelist(float latitude, float longitude) throws Exception;
 
     int insertLike(int userID, int storeID) throws Exception;
 

@@ -1,6 +1,7 @@
 package db.project.mvc.service;
 
 import db.project.mvc.domain.StoreVO;
+import db.project.mvc.domain.UserVO;
 import db.project.mvc.mapper.StoreMapper;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,15 @@ public class StoreService {
     // 가맹점의 조회수를 업데이트
     public int updateStoreViews(int storeID) throws Exception{
         return storeMapper.updateStoreViews(storeID);
+    }
+
+    //사용자의 정보를 가져옴
+    public UserVO getUser(int userID) throws Exception{
+        return storeMapper.getUser(userID);
+    }
+
+    public List<StoreVO> TopFiveViewsStorelist(float latitude, float longitude) throws Exception{
+        return storeMapper.TopFiveViewsStorelist(latitude,longitude);
     }
 
     //사용자가 좋아요한 가맹점 리스트들을 가져옴

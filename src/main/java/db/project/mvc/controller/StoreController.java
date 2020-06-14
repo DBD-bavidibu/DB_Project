@@ -1,6 +1,7 @@
 package db.project.mvc.controller;
 
 import db.project.mvc.domain.StoreVO;
+import db.project.mvc.domain.UserVO;
 import db.project.mvc.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,9 @@ public class StoreController {
 //   우리 동네 조회수 높은 순 상점 조회
     @RequestMapping("/TopFiveViewsStoreList/{userID}")
     private void TopFiveViewsStorelist(@PathVariable int userID, Model model) throws Exception{
+        UserVO user = storeService.getUser(userID);
 
+        model.addAttribute("list",storeService.TopFiveViewsStorelist(user.getLatitude(),user.getLongitude()));
     }
 
 
