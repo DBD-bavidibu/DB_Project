@@ -39,9 +39,15 @@ public class StoreService {
         return storeMapper.getUser(userID);
     }
 
-    public List<StoreVO> TopFiveViewsStorelist(float latitude, float longitude) throws Exception{
-        return storeMapper.TopFiveViewsStorelist(latitude,longitude);
+    public List<StoreVO> TopTenViewsStoreList(float latitude, float longitude) throws Exception{
+        return storeMapper.TopTenViewsStoreList(latitude,longitude);
     }
+
+    public List<StoreVO> TopTenLikesStoreList(float latitude, float longitude) throws Exception{
+        return storeMapper.TopTenLikesStoreList(latitude,longitude);
+    }
+
+
 
     //사용자가 좋아요한 가맹점 리스트들을 가져옴
     public List<StoreVO> storeList_UserLike(int userID) throws Exception{

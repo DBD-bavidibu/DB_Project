@@ -67,13 +67,20 @@ public class StoreController {
     }
 
 //   우리 동네 조회수 높은 순 상점 조회
-    @RequestMapping("/TopFiveViewsStoreList/{userID}")
-    private void TopFiveViewsStorelist(@PathVariable int userID, Model model) throws Exception{
+    @RequestMapping("/TopTenViewsStoreList/{userID}")
+    private void TopTenViewsStoreList(@PathVariable int userID, Model model) throws Exception{
         UserVO user = storeService.getUser(userID);
 
-        model.addAttribute("list",storeService.TopFiveViewsStorelist(user.getLatitude(),user.getLongitude()));
+        model.addAttribute("list",storeService.TopTenViewsStoreList(user.getLatitude(),user.getLongitude()));
     }
 
+//    우리 동네 좋아요 높은 순 상점 조회
+    @RequestMapping("/TopTenLikesStoreList/{userID}")
+    private void TopTenLikesStoreList(@PathVariable int userID, Model model) throws Exception{
+    UserVO user = storeService.getUser(userID);
+
+    model.addAttribute("list",storeService.TopTenLikesStoreList(user.getLatitude(),user.getLongitude()));
+}
 
 //  Like를 DB에 추가
     @RequestMapping(value = "/insertLike/{userID}}/{storeID}")
