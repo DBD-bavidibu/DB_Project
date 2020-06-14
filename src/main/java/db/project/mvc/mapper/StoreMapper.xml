@@ -10,4 +10,39 @@
         VALUES (#{store_id},#{city_code},#{store_name},#{category},#{address},#{latitude},#{longitude},0,now())
     </insert>
 
+    <select id="storeList" resultType="db.project.mvc.domain.StoreVO">
+        select * from stores;
+    </select>
+
+    <select id="storeDetail" parameterType="int" resultType="db.project.mvc.domain.StoreVO">
+        select * from Stores where store_id=#{storeID}
+    </select>
+
+    <update id="updateStoreViews" parameterType="int">
+        update stores set views=views+1 where store_id=#{storeID}
+    </update>
+
+
+    <select id="storeList_UserLike" parameterType="int" resultType="db.project.mvc.domain.StoreVO">
+        select * from likes join stores on likes.store_id = stores.store_id
+        where likes.user_id = #{userID}
+    </select>
+
+
+
+
+
+
+
+
+    <insert id="insertLike" parameterType="db.project.mvc.domain.LikeVO" useGeneratedKeys="true" keyProperty="like_id">
+        insert into
+        LIKES (LIKE_ID,USER_ID,STORE_ID)
+        VALUES(#{like_id},#{user_id},#{store_id});
+    </insert>
+
+    <delete id="deleteLike" parameterType="int">
+        delete from stores where store_id=#{storeID} and user_id=#{userID}
+    </delete>
+
 </mapper>
