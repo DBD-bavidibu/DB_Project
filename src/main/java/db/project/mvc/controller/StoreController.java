@@ -21,7 +21,7 @@ public class StoreController {
     @RequestMapping("/")
     private String getHome(Model model) throws Exception{
         //가맹점의 전체 리스트를 불러옴
-        model.addAttribute("list",storeService.storeList_CityWithKeyword(41110,1,"학원"));
+        model.addAttribute("list",storeService.storeList());
         return "home";
     }
     @RequestMapping("/login")
