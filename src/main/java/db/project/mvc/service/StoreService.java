@@ -39,6 +39,30 @@ public class StoreService {
         return storeMapper.getUser(userID);
     }
 
+    public List<StoreVO> storeList_HomeDistance(int distance,int userID) throws Exception{
+        return storeMapper.storeList_HomeDistance(distance,userID);
+    }
+
+    public List<StoreVO> storeList_HomeDistanceWithCategory(int distance, int userID, String keyword) throws Exception{
+        return storeMapper.storeList_HomeDistanceWithCategory(distance,userID,keyword);
+    }
+
+    public List<StoreVO> storeList_HomeDistanceWithKeyword(int distance, int userID, String keyword) throws Exception{
+        return storeMapper.storeList_HomeDistanceWithKeyword(distance,userID,keyword);
+    }
+
+    public List<StoreVO> storeList_City(int city_code,int userID) throws Exception{
+        return storeMapper.storeList_City(city_code,userID);
+    }
+
+    public List<StoreVO> storeList_CityWithCategory(int city_code,int userID,String category) throws Exception{
+        return storeMapper.storeList_CityWithCategory(city_code,userID,category);
+    }
+
+    public List<StoreVO> storeList_CityWithKeyword(int city_code,int userID,String keyword) throws Exception{
+        return storeMapper.storeList_CityWithKeyword(city_code,userID,keyword);
+    }
+
     public List<StoreVO> TopTenViewsStoreList(float latitude, float longitude) throws Exception{
         return storeMapper.TopTenViewsStoreList(latitude,longitude);
     }

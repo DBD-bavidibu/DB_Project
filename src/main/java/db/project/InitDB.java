@@ -69,7 +69,7 @@ public class InitDB {
         statement.executeUpdate(createTable);
         createTable="create table Users(\n" +
                 "    user_id serial primary key,\n" +
-                "    user_name VARCHAR(50) unique not null,\n" +
+                "    user_name VARCHAR(50) not null,\n" +
                 "    email VARCHAR(355) unique not null,\n" +
                 "    password VARCHAR(50) not null,\n" +
                 "    phone_number VARCHAR(20) not null,\n" +

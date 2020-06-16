@@ -14,27 +14,28 @@
             <form action="/insertProc" method="post">
                 <dl class="dl-horizontal">
                     <dt>제목</dt>
-                    <dd>${detail.subject}</dd>
+                    <dd>${detail.store_id}</dd>
 
                     <dt>작성자</dt>
-                    <dd>${detail.writer}</dd>
+                    <dd>${detail.store_name}</dd>
 
                     <dt>작성날짜</dt>
                     <dd>
-                        <fmt:formatDate value="${detail.reg_date}" pattern="yyyy.MM.dd HH:mm:ss"/>
+<%--                        <fmt:formatDate value="${detail.reg_date}" pattern="yyyy.MM.dd HH:mm:ss"/>--%>
                     </dd>
 
                     <dt>첨부파일</dt>
-                    <dd><a href="/fileDown/${files.bno}">${files.fileOriName}</a></dd>
+<%--                    <dd><a href="/fileDown/${files.bno}">${files.fileOriName}</a></dd>--%>
 
                     <dt>내용</dt>
-                    <dd>${detail.content}</dd>
+                    <dd>${detail.address}</dd>
                 </dl>
             </form>
             <div class="btn-group btn-group-sm" role="group" style="float:right;">
-                <button type="button" class="btn btn-default" onclick="location.href='/delete/${detail.bno}'">삭제</button>
-                <button type="button" class="btn btn-default" onclick="location.href='/update/${detail.bno}'">수정</button>
-                <button type="button" class="btn btn-default" onclick="location.href='/list'"> 목록 </button>
+<%--                <button type="button" class="btn btn-default" onclick="location.href='/delete/${detail.bno}'">삭제</button>--%>
+<%--                <button type="button" class="btn btn-default" onclick="location.href='/update/${detail.bno}'">수정</button>--%>
+                <button type="button" class="btn btn-default" onclick="location.href='/'"> 목록 </button>
+
             </div>
         </div>
 
@@ -58,5 +59,5 @@
 <%--        </div>--%>
 <%--    </div>--%>
 
-    <%@ include file="commentS.jsp" %>
+<%--    <%@ include file="commentS.jsp" %>--%>
 </layoutTag:layout>

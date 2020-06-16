@@ -13,6 +13,9 @@ public class StoreVO {
     private int views;
     private Date created_date;
 
+    // 거리 계산을 위한 임시 변수
+    private int distance;
+
     public int getStore_id() {
         return store_id;
     }
@@ -83,5 +86,13 @@ public class StoreVO {
 
     public void setCreated_date(Date created_date) {
         this.created_date = created_date;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 }
