@@ -33,16 +33,16 @@
                         <td>${l.store_name}</td>
                         <td>${l.category}</td>
                         <td>${l.views}</td>
+                        <td>${l.city_code}</td>
+                        <td>${l.distance}</td>
                         <td>
-<%--                            <fmt:formatDate value="${l.reg_date}" pattern="yyyy.MM.dd HH:mm:ss"/>--%>
+                            <fmt:formatDate value="${l.created_date}" pattern="yyyy.MM.dd HH:mm:ss"/>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
     </div>
-
-
     </body>
     </html>
 

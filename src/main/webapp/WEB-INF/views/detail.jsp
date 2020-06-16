@@ -51,9 +51,7 @@
 				                    카테고리 : <c:out value ="${detail.category}"/></br>
 				                    주소 : <c:out value ="${detail.address}"/></br>
 				                    집에서부터 거리 : </br>
-				                    현재 위치에서부터 거리 : </br>
-
-				                    
+				                    현재 위치에서부터 거리 : </br>   
                     </p>
                 </ul>
             </div> 

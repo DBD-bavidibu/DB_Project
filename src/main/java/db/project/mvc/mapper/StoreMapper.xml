@@ -32,19 +32,57 @@
         select * from Users where user_id = #{userID}
     </select>
 
+    <select id="storeList_HomeDistance" parameterType="int" resultType="db.project.mvc.domain.StoreVO">
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date , earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where u.user_id = #{userID} and earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) &lt; #{distance}
+    </select>
+
+    <select id="storeList_HomeDistanceWithCategory" parameterType="map" resultType="db.project.mvc.domain.StoreVO">
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date , earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) &lt; #{distance}
+        and u.user_id = #{param2}  and s.category='${category}'
+    </select>
+
+    <select id="storeList_HomeDistanceWithKeyword" parameterType="map" resultType="db.project.mvc.domain.StoreVO">
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date, earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where u.user_id = #{userID} and power(8800*abs(s.latitude-u.latitude),2)+power(111000*abs(s.longitude-u.longitude),2)&lt; #{distance}
+        and (s.category like '%${keyword}%' or s.store_name like '%${keyword}%')
+    </select>
+
+    <select id="storeList_City" parameterType="int" resultType="db.project.mvc.domain.StoreVO">
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date, earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where u.user_id =#{userID} and city_code=#{city_code}
+    </select>
+
+    <select id="storeList_CityWithCategory" resultType="db.project.mvc.domain.StoreVO">
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date, earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where u.user_id = #{userID} and city_code=#{city_code} and category=#{category}
+    </select>
+
+    <select id="storeList_CityWithKeyword" resultType="db.project.mvc.domain.StoreVO">
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date, earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where u.user_id=#{userID} and city_code=#{city_code} and (category like '%${keyword}%' or store_name like '%${keyword}%')
+    </select>
 
     <select id="TopTenViewsStoreList" parameterType="float" resultType="db.project.mvc.domain.StoreVO">
-        select * from stores
-        where power(8800*abs(latutude-#{latitude}),2)+power(111000*abs(longitude-#{longitude}),2) &lt; 1
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date, earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where u.user_id=#{userID} and earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude))&lt; #{distance}
         order by views desc limit 10
     </select>
 
     <select id="TopTenLikesStoreList" parameterType="float" resultType="db.project.mvc.domain.StoreVO">
         select s.store_id, s.store_name,l.like_num from store s
-        join (  select store_id, count(store_id) as like like_num
+        join (  select store_id, count(store_id) as like_num
                 from likes group by store_id) l
         on s.store_id = l.store_id
-        where power(8800*abs(latutude-#{latitude}),2)+power(111000*abs(longitude-#{longitude}),2) &lt; 1
+        where earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude))&lt; #{distance}
         order by l.like_num desc limit 10
     </select>
 
