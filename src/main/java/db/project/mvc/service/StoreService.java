@@ -96,4 +96,19 @@ public class StoreService {
     public List<String> getCategoryList() throws Exception{
         return storeMapper.getCategoryList();
     }
+
+    public boolean loginUser(String email, String password) throws Exception{
+        return storeMapper.loginUser(email,password);
+    }
+    public boolean createUser(String user_name,String email,String password,String phone_number,float latitude,float longitude) throws Exception{
+        return storeMapper.createUser(user_name,email,password,phone_number,latitude,longitude);
+    }
+
+    public boolean updateUser(int user_id,String user_name,String email,String password,String phone_number,float latitude,float longitude) throws Exception{
+        return storeMapper.updateUser(user_id,user_name,email,password,phone_number,latitude,longitude);
+    }
+
+    public int deleteUser(int user_id,String password) throws Exception{
+        return storeMapper.deleteUser(user_id,password);
+    }
 }

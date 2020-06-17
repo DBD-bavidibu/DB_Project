@@ -19,13 +19,13 @@ public class StoreController {
     StoreService storeService;
 
     @RequestMapping("/")
-    private String getHome(Model model) throws Exception{
+    private String getHomePage(Model model) throws Exception{
         //가맹점의 전체 리스트를 불러옴
         model.addAttribute("list",storeService.storeList());
         return "home";
     }
     @RequestMapping("/login")
-    private String getLogin() throws Exception{
+    private String getLoginPage() throws Exception{
         return "login";
     }
 
@@ -35,7 +35,7 @@ public class StoreController {
     }
 
     @RequestMapping("/register")
-    private String getRegister() throws Exception{
+    private String getRegisterPage() throws Exception{
         return "register";
     }
     @RequestMapping("/updateUser")
@@ -138,7 +138,23 @@ public class StoreController {
         model.addAttribute("categoryList",storeService.getCategoryList());
     }
 
+    @RequestMapping(value="/login/email/{email}/password/{password}")
+    private void loginUser(@PathVariable(value="email") String email, @PathVariable(value="password") String password, Model model) throws Exception{
+        model.addAttribute("isExisted",storeService.loginUser(email,password));
+    }
 
+    @RequestMapping(value = "createUser/name/{userName}/email/{email}/pw/{password}/PH/{phoneNumber}/latitude/{latitude}/longitude/{longitude}")
+    private void createUser(@PathVariable(value ="userName") String user_name, @PathVariable(value="email") String email, @PathVariable(value="password") String password,@PathVariable(value = "phoneNumber") String phone_number,@PathVariable(value="latitude") float latitude, @PathVariable(value = "longitude") float longitude, Model model) throws Exception {
+        model.addAttribute("isSuccessed",storeService.createUser(user_name,email,password,phone_number,latitude,longitude));
+    }
 
+    @RequestMapping(value = "updateUser/{userID}/name/{userName}/email/{email}/pw/{password}/PH/{phoneNumber}/latitude/{latitude}/longitude/{longitude}")
+    private void updateUser(@PathVariable(value="userID") int user_id,@PathVariable(value ="userName") String user_name, @PathVariable(value="email") String email, @PathVariable(value="password") String password,@PathVariable(value = "phoneNumber") String phone_number,@PathVariable(value="latitude") float latitude, @PathVariable(value = "longitude") float longitude, Model model) throws Exception {
+        model.addAttribute("isSuccessed",storeService.updateUser(user_id,user_name,email,password,phone_number,latitude,longitude));
+    }
 
+    @RequestMapping(value = "deleteUser/{userID}/{password}")
+    private void deleteuser(@PathVariable(value = "userID") int user_id,@PathVariable(value = "password") String password) throws Exception{
+        storeService.deleteUser(user_id,password);
+    }
 }

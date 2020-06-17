@@ -98,11 +98,36 @@
     </delete>
 
     <select id="getCityList" resultType="db.project.mvc.domain.CityVO">
-        select distinct  * from cities;
+        select distinct * from cities;
     </select>
 
     <select id="getCategoryList" resultType="String">
         select distinct category from stores;
     </select>
+
+    <select id="loginUser" parameterType="String" resultType="boolean">
+        select EXISTS (select * from users where email=#{email} and password=#{password}) as isExisted;
+    </select>
+
+    <insert id="createUser" parameterType="db.project.mvc.domain.UserVO" useGeneratedKeys="true" keyProperty="user_id">
+        insert into users(USER_ID,USER_NAME,EMAIL,PASSWORD,PHONE_NUMBER,LATITUDE,LONGITUDE)
+        values(#{user_id},#{user_name},#{email},#{password},#{phone_number},#{latitude},#{longitude})
+    </insert>
+
+    <update id="updateUser" parameterType="db.project.mvc.domain.UserVO">
+        update users
+        set username=#{user_name},
+            email=#{email},
+            password=#{password},
+            phone_number=#{phone_number},
+            latitude=#{latitude},
+            longitude=#{longitude}
+        where user_id=#{user_id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from users
+        where user_id=#{user_id} and password=#{password}
+    </delete>
 
 </mapper>
