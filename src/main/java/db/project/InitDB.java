@@ -12,9 +12,9 @@ import java.util.Date;
 public class InitDB {
 
     //본인의 DB 정보 넣으시면 됩니다.
-    private String DBURL = "jdbc:postgresql://localhost:5432/DB_Project";
+    private String DBURL = "jdbc:postgresql://localhost:5432/db_project";
     private String DBUser = "postgres";
-    private String DBPassword = "0000";
+    private String DBPassword = "blackapple";
 
     Connection connection;
     Statement statement;

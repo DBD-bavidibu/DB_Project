@@ -1,0 +1,25 @@
+.form-box h1{
+    margin-bottom: 1rem;    
+}
+
+.login-box ion-icon{
+    display: inline-block;
+    margin-left: .2rem;
+    margin-bottom: -.5rem;
+}
+
+.login-box .more{
+    font-size: 1.5rem;
+    margin-top:1rem;
+    transition: all 350ms;
+}
+
+a{
+    text-decoration: none;
+    line-height: 30px;
+    color: black;
+}
+
+.more a:hover{
+    font-weight: 800;
+}

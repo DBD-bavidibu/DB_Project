@@ -1,0 +1,243 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+.content{
+    width: 80%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.content>.search-part{
+    width: 100%;
+    padding: 1rem;
+}
+
+.content>.search-part>h3{
+    margin-top: 2.5rem;
+    font-size: 3.5rem;
+    text-align: center;
+
+}
+
+.content>.search-part>.textbox{
+    display:flex;
+    align-items: stretch;
+    width: 100%;
+    margin: 1rem auto;
+    height: 4rem;
+    font-size: 20px;
+    border: 2px solid #999;
+    border-radius: 1rem;
+}
+
+.search-part>.textbox>ion-icon{
+    position: relative;
+    top: 20%;
+    width: 5rem;
+}
+
+.search-part>.textbox>.search{
+    border:none;
+    outline: none;
+    background: none;
+    flex:1;
+}
+
+.search-part>.textbox>button{
+    cursor: pointer;
+    border:none;
+    background: none;
+    outline: none;
+    background-color : black;
+    color:white;
+    font-weight: 600;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    width: 7rem;
+}
+
+.dropbox-part{
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid black;
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+}
+
+.dropbox-part .dropbox-container{
+    width: 18%;
+}
+
+.dropbox-part .dropbox-title{
+    height: 3.5rem;
+    border: 1px solid #999;
+    border-radius: 3px;
+    width: 100%;
+    text-align: center;
+    display:flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropbox-title h5{
+    display: inline-block;
+    font-size: 1.5rem;
+    flex:1;
+}
+
+.dropbox-title ion-icon{
+    cursor: pointer;
+    float: right;
+    flex: 0.2;
+    font-size: 1.5rem;
+}
+
+.dropbox-list{
+    margin-top: 2px;
+    text-align: center;
+    list-style: none;
+    height: 10rem;
+    overflow-Y: scroll;
+    border: 1px solid #999;
+}
+
+.dropbox-list >li {
+    position: relative;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.dropbox-list>li:hover{
+    top: -2%;
+    font-weight: 700;
+}
+
+.display-part{
+    width: 100%;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid black;
+}
+
+#display-title{
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 1.2rem;
+}
+
+.info-container{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.card{
+    width: 180px;
+    background-color: #ffffff;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    margin: 2rem 0;
+    border: 1px solid black;
+    margin: 0.5rem;
+}
+
+.card .card-img{
+    width :100%;
+    height: 11rem;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 95%);
+}
+
+.card h1{
+    text-align: center;
+    padding: 0 2rem;
+    font-size: 1.7rem;
+    color: #333;
+    margin-top: -1rem;
+}
+
+.about{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    margin: 1.5rem 0;
+    color: #333;
+}
+
+.prefer{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.prefer>div{
+    display: inline-block;
+}
+
+.prefer>ion-icon{
+    float: right;
+    font-size: 3.5rem;
+}
+
+.page-nav{
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 2.5rem;
+}
+
+.page-nav a{
+    text-decoration: none;
+    outline: none;
+    color:gray;
+    cursor: pointer;
+    margin: 0 .5rem;
+    margin-top: -1rem;
+    padding: .2rem 1rem;
+    border-radius: 50%;
+}
+
+.paga-nav ion-icon{
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.page-nav a:hover,
+.page-nav ion-icon:hover{
+    background-color: gainsboro;
+}
+
+.page-nav .now{
+    color:black;
+}
+
+footer{
+    width: 80%;
+    max-width: 960px;
+    font-size: 2rem;
+    margin: 0 auto;
+    margin-bottom: 6rem;
+}
+
+footer>span{
+    float: right;
+    font-weight: 800;
+}
+
+.hidden{
+    display: none !important;
+}
