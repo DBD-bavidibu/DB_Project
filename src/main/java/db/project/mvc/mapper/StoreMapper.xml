@@ -15,7 +15,9 @@
     </select>
 
     <select id="storeDetail" parameterType="int" resultType="db.project.mvc.domain.StoreVO">
-        select * from Stores where store_id=#{storeID}
+        select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date , earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s, users u
+        where store_id=#{storeID} and user_id =#{userID}
     </select>
 
     <update id="updateStoreViews" parameterType="int">

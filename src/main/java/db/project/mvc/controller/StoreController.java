@@ -50,11 +50,11 @@ public class StoreController {
 
 
 //   가맹점의 상세 정보를 불러옴
-    @RequestMapping("/detail/{storeID}")
-    private String storeDetail(@PathVariable int storeID, Model model) throws Exception{
+    @RequestMapping("/detail/{storeID}/{userID}")
+    private String storeDetail(@PathVariable(value = "storeID") int storeID,@PathVariable(value="userID") int userID, Model model) throws Exception{
 //        상세 정보를 불러올 때 조회수를 증가
         storeService.updateStoreViews(storeID);
-        model.addAttribute("detail",storeService.storeDetail(storeID));
+        model.addAttribute("detail",storeService.storeDetail(storeID,userID));
         return "detail";  //jsp
     }
 

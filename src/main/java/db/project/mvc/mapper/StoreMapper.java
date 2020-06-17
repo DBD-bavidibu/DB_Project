@@ -15,7 +15,7 @@ public interface StoreMapper {
 
 //    public List<Store> getStoreList() throws Exception;
 
-    StoreVO storeDetail(int storeID) throws Exception;
+    StoreVO storeDetail(@Param("storeID") int storeID,@Param("userID") int userID) throws Exception;
 
     int updateStoreViews(int storeID) throws Exception;
 

@@ -26,8 +26,8 @@ public class StoreService {
     }
 
     // 가맹점의 상세정보를 가져옴
-    public StoreVO storeDetail(int storeID) throws Exception{
-        return storeMapper.storeDetail(storeID);
+    public StoreVO storeDetail(int storeID,int userID) throws Exception{
+        return storeMapper.storeDetail(storeID,userID);
     }
 
     // 가맹점의 조회수를 업데이트
