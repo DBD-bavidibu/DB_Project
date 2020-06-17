@@ -24,6 +24,7 @@ public class StoreController {
         model.addAttribute("list",storeService.storeList());
         return "home";
     }
+    
     @RequestMapping("/login")
     private String getLogin() throws Exception{
         return "login";
@@ -38,6 +39,7 @@ public class StoreController {
     private String getRegister() throws Exception{
         return "register";
     }
+    
     @RequestMapping("/updateUser")
     private String updateUser() throws Exception{
         return "fixeduser";
@@ -45,9 +47,8 @@ public class StoreController {
 
     @RequestMapping("/searchUser")
     private String searchUser() throws Exception{
-        return "searchUser";
+        return "searchuser";
     }
-
 
 //   가맹점의 상세 정보를 불러옴
     @RequestMapping("/detail/{storeID}")
@@ -93,8 +94,4 @@ public class StoreController {
     private void deleteLike(@PathVariable int likeID, Model model) throws Exception{
         storeService.deleteLike(likeID);
     }
-
-
-
-
 }

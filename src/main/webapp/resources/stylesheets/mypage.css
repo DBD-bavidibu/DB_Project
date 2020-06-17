@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    width:100%;
+}
+
+.content{
+    padding:2rem;
+    width: 80%;
+    max-width: 830px;
+    margin: 10rem auto 2rem auto;
+}
+
+.content h3{
+    background-color: rgb(223, 222, 222);
+    color: black;
+    font-size: 4rem;
+    padding-left: 1rem;
+    border-radius: 10px;
+}
+
+.content>.hello{
+    width:100%;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.user-info-container{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-info-container>.control-part{
+    flex:2;
+    margin-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(223, 222, 222);
+}
+
+.control-part > .command{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+}
+
+.control-part > .command> a{
+    outline: none;
+    text-decoration: none;
+    color:rgb(114, 114, 114);
+    margin-top: .5rem;
+    margin-left: 15%;
+    font-weight: bold;
+}
+
+.control-part > .command> a:hover{
+    color:black;
+}
+
+.control-part > img{
+    width : 70%;
+    height: 250px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.control-part > h5{
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.user-info-container>.show-part{
+    flex:3;
+    display: flex;
+    flex-direction: column;
+}
+
+.show-part>.zim-list{
+    flex: 5;
+    margin-bottom: 1rem;
+    background-color: rgb(223, 222, 222);
+}
+
+.zim-list>h5{
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.zim-list > .my-zim{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.my-zim > .row{
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid rgb(180, 180, 180);
+    padding: .6rem 0;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.my-zim .title-container{
+    font-size: 1.3rem;
+    font-weight: 600;
+    background-color: rgb(240, 240, 240);
+}
+
+.row > .col1{
+    flex : 1;
+    text-align: center;
+}
+
+.row > .col2{
+    flex: 1;
+    text-align: center;
+}
+.show-part>.user-info{
+    flex:3;
+    background-color: rgb(223, 222, 222);
+}
+
+.user-info > p{
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: .5rem;
+}
+
+.box{
+    box-shadow: .1rem .1rem .5rem rgba(0, 0, 0,0.3);
+    border-radius: 5px;
+}

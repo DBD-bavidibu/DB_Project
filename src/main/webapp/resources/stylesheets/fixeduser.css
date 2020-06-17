@@ -1,0 +1,22 @@
+.fixed-box{
+    width: 70%;
+}
+
+.fixed-box > .input-section{
+    width: 80%;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.input-section>.textbox{
+    width: 100%;
+    display: flex;
+}
+
+.input-section>.textbox> strong{
+    flex: 4 4 0;
+}
+
+.input-section>.textbox> input{
+    flex: 6 6 0;
+}
