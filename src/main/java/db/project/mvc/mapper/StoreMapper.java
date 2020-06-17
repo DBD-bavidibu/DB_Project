@@ -1,5 +1,6 @@
 package db.project.mvc.mapper;
 
+import db.project.mvc.domain.CityVO;
 import db.project.mvc.domain.StoreVO;
 import db.project.mvc.domain.UserVO;
 import org.apache.ibatis.annotations.Param;
@@ -44,7 +45,9 @@ public interface StoreMapper {
 
     int deleteLike(int likeID) throws Exception;
 
+    List<CityVO> getCityList() throws Exception;
 
+    List<String> getCategoryList() throws Exception;
 
 
 

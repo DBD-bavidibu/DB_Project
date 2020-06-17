@@ -128,6 +128,16 @@ public class StoreController {
         storeService.deleteLike(likeID);
     }
 
+    @RequestMapping(value = "/cityList")
+    private void getCityList(Model model) throws Exception{
+        model.addAttribute("cityList",storeService.getCityList());
+    }
+
+    @RequestMapping(value="/categoryList")
+    private void getCategoryList(Model model) throws Exception{
+        model.addAttribute("categoryList",storeService.getCategoryList());
+    }
+
 
 
 

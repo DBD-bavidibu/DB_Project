@@ -1,5 +1,6 @@
 package db.project.mvc.service;
 
+import db.project.mvc.domain.CityVO;
 import db.project.mvc.domain.StoreVO;
 import db.project.mvc.domain.UserVO;
 import db.project.mvc.mapper.StoreMapper;
@@ -86,5 +87,13 @@ public class StoreService {
     // 좋아요를 취소
     public int deleteLike(int likeID) throws Exception{
         return storeMapper.deleteLike(likeID);
+    }
+
+    public List<CityVO> getCityList() throws Exception{
+        return storeMapper.getCityList();
+    }
+
+    public List<String> getCategoryList() throws Exception{
+        return storeMapper.getCategoryList();
     }
 }
