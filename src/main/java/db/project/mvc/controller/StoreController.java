@@ -1,5 +1,6 @@
 package db.project.mvc.controller;
 
+import db.project.mvc.domain.CityVO;
 import db.project.mvc.domain.StoreVO;
 import db.project.mvc.domain.UserVO;
 import db.project.mvc.service.StoreService;
@@ -52,6 +53,7 @@ public class StoreController {
 
 
 //   가맹점의 상세 정보를 불러옴
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/detail/{storeID}/{userID}")
     private String storeDetail(@PathVariable(value = "storeID") int storeID,@PathVariable(value="userID") int userID, Model model) throws Exception{
 //        상세 정보를 불러올 때 조회수를 증가
@@ -61,6 +63,7 @@ public class StoreController {
     }
 
     // 집으로부터 특정 거리 이내의 가맹점 리스트
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping(value="/storeList/home/{distance}/user/{userID}")
     @ResponseBody
     private List<StoreVO> storeList_HomeDistance(@PathVariable(value="distance") int distance,@PathVariable(value="userID") int userID, Model model) throws Exception{
@@ -85,6 +88,7 @@ public class StoreController {
     }
 
 //    지역에 있는 가맹점 리스트
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}")
     @ResponseBody
     private List<StoreVO> storeList_City(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, Model model) throws Exception{
@@ -117,6 +121,7 @@ public class StoreController {
     }
 
 //   우리 동네 조회수 높은 순 상점 조회
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/TopTenViewsStoreList/{userID}")
     @ResponseBody
     private List<StoreVO> TopTenViewsStoreList(@PathVariable int userID, Model model) throws Exception{
@@ -149,14 +154,19 @@ public class StoreController {
         storeService.deleteLike(likeID);
     }
 
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping(value = "/cityList")
-    private void getCityList(Model model) throws Exception{
-        model.addAttribute("cityList",storeService.getCityList());
+    @ResponseBody
+    private List<CityVO> getCityList(Model model) throws Exception{
+        List<CityVO> list = storeService.getCityList();
+        return list;
     }
 
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping(value="/categoryList")
-    private void getCategoryList(Model model) throws Exception{
-        model.addAttribute("categoryList",storeService.getCategoryList());
+    private List<String> getCategoryList(Model model) throws Exception{
+        List<String> list =  storeService.getCategoryList();
+        return list;
     }
     
     //로그인
@@ -166,9 +176,11 @@ public class StoreController {
     }
     
     //회원 가입
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     @ResponseBody
     private void createUser(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
+    	System.out.println("오냐..");
     	String user_name = httpServletRequest.getParameter("user_name");
     	float latitude = Float.valueOf(httpServletRequest.getParameter("latitude"));
     	float longitude =  Float.valueOf(httpServletRequest.getParameter("longitude"));
@@ -178,20 +190,37 @@ public class StoreController {
         boolean isSuccess = storeService.createUser(user_name,email,password,phone_number,latitude,longitude);
         String myjson;
         if(isSuccess) {
-        	myjson = "{ result : ok}";
+        	myjson = "{ \"result\" : \"ok\"}";
         }else {
-        	myjson = "{ result : no}";
+        	myjson = "{ \"result\" : \"no\"}";
         }
         
         response.getWriter().print(myjson);
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    //개인적인 테스트 부분입니다. 그냥 무시하세요.
+    @CrossOrigin(origins="http://localhost")
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
     @ResponseBody
     private void test(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
-    	String myjson = "{ \"result\" : \"ok\"}";
+    	String user_name = httpServletRequest.getParameter("user_name");
+    	String password = httpServletRequest.getParameter("password");
+    	boolean isSuccess;
+    	if(user_name.equals("구교현")) {
+    		isSuccess = true;
+    	}else {
+    		isSuccess = false;
+    	}
+
+    	String myjson;
+        if(isSuccess) {
+        	myjson = "{ \"result\" : true}";
+        }else {
+        	myjson = "{ \"result\" : false}";
+        }
     	response.getWriter().print(myjson);
     }
+    
     //회원 정보 수정
     @RequestMapping(value = "updateUser/{userID}/name/{userName}/email/{email}/pw/{password}/PH/{phoneNumber}/latitude/{latitude}/longitude/{longitude}")
     private void updateUser(@PathVariable(value="userID") int user_id,@PathVariable(value ="userName") String user_name, @PathVariable(value="email") String email, @PathVariable(value="password") String password,@PathVariable(value = "phoneNumber") String phone_number,@PathVariable(value="latitude") float latitude, @PathVariable(value = "longitude") float longitude, Model model) throws Exception {
