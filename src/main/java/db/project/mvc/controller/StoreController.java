@@ -6,10 +6,7 @@ import db.project.mvc.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -64,67 +61,86 @@ public class StoreController {
     }
 
     // 집으로부터 특정 거리 이내의 가맹점 리스트
-    @RequestMapping("/storeList/home/{distance}/user/{userID}")
-    private void storeList_HomeDistance(@PathVariable(value="distance") int distance,@PathVariable(value="userID") int userID, Model model) throws Exception{
-        model.addAttribute("list",storeService.storeList_HomeDistance(distance,userID));
+    @RequestMapping(value="/storeList/home/{distance}/user/{userID}")
+    @ResponseBody
+    private List<StoreVO> storeList_HomeDistance(@PathVariable(value="distance") int distance,@PathVariable(value="userID") int userID, Model model) throws Exception{
+        List<StoreVO> stores= storeService.storeList_HomeDistance(distance,userID);
+        return stores;
     }
 
 //    집으로부터 특정 거리 이내의 가맹점 중에 특정 카테고리인 가맹점 리스트
     @RequestMapping("/storeList/home/{distance}/user/{userID}/category/{category}")
-    private void storeList_HomeDistanceWithCategory(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
-        model.addAttribute("list",storeService.storeList_HomeDistanceWithCategory(distance,userID,category));
+    @ResponseBody
+    private List<StoreVO> storeList_HomeDistanceWithCategory(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
+        List<StoreVO> stores=storeService.storeList_HomeDistanceWithCategory(distance,userID,category);
+        return stores;
     }
 
 //    집으로부터 특정 거리 이내의 가맹점 중에 키워드를 포함하는 리스트 (카테고리, 이름)
     @RequestMapping("/storeList/home/{distance}/user/{userID}/keyword/{keyword}")
-    private void storeList_HomeDistanceWithKeyword(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="keyword") String keyword, Model model) throws Exception{
-        model.addAttribute("list",storeService.storeList_HomeDistanceWithKeyword(distance,userID,keyword));
+    @ResponseBody
+    private List<StoreVO> storeList_HomeDistanceWithKeyword(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="keyword") String keyword, Model model) throws Exception{
+        List<StoreVO> stores = storeService.storeList_HomeDistanceWithKeyword(distance,userID,keyword);
+        return stores;
     }
 
 //    지역에 있는 가맹점 리스트
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}")
-    private void storeList_City(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, Model model) throws Exception{
-        model.addAttribute("list",storeService.storeList_City(city_code,userID));
+    @ResponseBody
+    private List<StoreVO> storeList_City(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, Model model) throws Exception{
+        List<StoreVO> stores= storeService.storeList_City(city_code,userID);
+        return stores;
     }
 
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}/category/{category}")
-    private void storeList_CityWithCategory(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
-        model.addAttribute("list",storeService.storeList_CityWithCategory(city_code,userID,category));
+    @ResponseBody
+    private List<StoreVO> storeList_CityWithCategory(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
+        List<StoreVO> stores=storeService.storeList_CityWithCategory(city_code,userID,category);
+        return stores;
     }
 
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}/keyword/{keyword}")
-    private void storeList_CityWithKeyword(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID,  @PathVariable(value="keyword") String keyword,Model model) throws Exception {
-        model.addAttribute("list",storeService.storeList_CityWithKeyword(city_code,userID,keyword));
+    @ResponseBody
+    private List<StoreVO> storeList_CityWithKeyword(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID,  @PathVariable(value="keyword") String keyword,Model model) throws Exception {
+        List<StoreVO> stores= storeService.storeList_CityWithKeyword(city_code,userID,keyword);
+        return stores;
     }
 
 
 //   유저가 좋아요한 가맹점 리스트
     @RequestMapping("/storeList/UserLike/{userID}}")
-    private String storeList_UserLike(@PathVariable int userID, Model model) throws Exception{
+    @ResponseBody
+    private List<StoreVO> storeList_UserLike(@PathVariable int userID, Model model) throws Exception{
         // 유저가 좋아요한 가맹점 리스트 불러오기
-        model.addAttribute("list",storeService.storeList_UserLike(userID));
-        return "storeList_UserLike";
+        List<StoreVO> stores = storeService.storeList_UserLike(userID);
+        return stores;
     }
 
 //   우리 동네 조회수 높은 순 상점 조회
     @RequestMapping("/TopTenViewsStoreList/{userID}")
-    private void TopTenViewsStoreList(@PathVariable int userID, Model model) throws Exception{
+    @ResponseBody
+    private List<StoreVO> TopTenViewsStoreList(@PathVariable int userID, Model model) throws Exception{
         UserVO user = storeService.getUser(userID);
-        model.addAttribute("list",storeService.TopTenViewsStoreList(user.getLatitude(),user.getLongitude()));
+        List<StoreVO> stores = storeService.TopTenViewsStoreList(user.getLatitude(),user.getLongitude());
+        return stores;
     }
 
 //    우리 동네 좋아요 높은 순 상점 조회
     @RequestMapping("/TopTenLikesStoreList/{userID}")
-    private void TopTenLikesStoreList(@PathVariable int userID, Model model) throws Exception{
+    @ResponseBody
+    private List<StoreVO> TopTenLikesStoreList(@PathVariable int userID, Model model) throws Exception{
     UserVO user = storeService.getUser(userID);
 
-    model.addAttribute("list",storeService.TopTenLikesStoreList(user.getLatitude(),user.getLongitude()));
+    List<StoreVO> stores = storeService.TopTenLikesStoreList(user.getLatitude(),user.getLongitude());
+    return stores;
 }
 
 //  Like를 DB에 추가
     @RequestMapping(value = "/insertLike/{userID}}/{storeID}")
-    private void insertLike(@PathVariable(value="userID") int userID, @PathVariable(value="storeID") int storeID, Model model) throws Exception{
-        storeService.insertLike(userID,storeID);
+    @ResponseBody
+    private int insertLike(@PathVariable(value="userID") int userID, @PathVariable(value="storeID") int storeID, Model model) throws Exception{
+        int result = storeService.insertLike(userID,storeID);
+        return result;
     }
 
 //    Like를 DB에서 제거
