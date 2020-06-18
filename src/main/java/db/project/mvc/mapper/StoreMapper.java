@@ -47,9 +47,9 @@ public interface StoreMapper {
 
     UserVO getUser(int userID) throws Exception;
 
-    List<StoreVO> TopTenViewsStoreList(float latitude, float longitude) throws Exception;
+    List<StoreVO> TopTenViewsStoreList(int userID) throws Exception;
 
-    List<StoreVO> TopTenLikesStoreList(float latitude, float longitude) throws Exception;
+    List<StoreVO> TopTenLikesStoreList(int userID) throws Exception;
 
     int insertLike(int userID, int storeID) throws Exception;
 
