@@ -26,31 +26,27 @@
             <div class="input-section">
                 <div class="textbox">
                     <strong>아이디(이메일 주소)</strong>
-                    <input class="input-text" type="text" placeholder="이메일 주소 입력" name="" id="">
+                    <input class="input-text" type="text" placeholder="이메일 주소 입력" name="email" id="">
                 </div>
                 <div class="textbox">
                     <strong>비밀번호</strong>
-                    <input class="input-text" type="text" placeholder="6~16자 영문, 숫자" name="" id="">
-                </div>
-                <div class="textbox">
-                    <strong>비밀번호 재확인</strong>
-                    <input class="input-text" type="text" placeholder="비밀번호 재입력" name="" id="">
+                    <input class="input-text" type="text" placeholder="6~16자 영문, 숫자" name="password" id="">
                 </div>
                 <div class="textbox">
                     <strong>이름</strong>
-                    <input class="input-text" type="text" placeholder="이름" name="" id="">
+                    <input class="input-text" type="text" placeholder="이름" name="user_name" id="">
                 </div>
                 <div class="textbox">
                     <strong>전화번호</strong>
-                    <input class="input-text" type="text" placeholder="전화 번호" name="" id="">
+                    <input class="input-text" type="text" placeholder="전화 번호" name="phone_number" id="">
                 </div>
                 <div class="textbox">
-                    <strong>집 주소</strong>
-                    <input class="input-text" type="text" placeholder="집 주소 검색" name="" id="">
+                    <strong>위도</strong>
+                    <input class="input-text" type="text" placeholder="위도 입력" name="latitude" id="">
                 </div>
                 <div class="textbox">
-                    <strong>전화번호</strong>
-                    <input class="input-text" type="text" placeholder="-제외 번호 입력" name="" id="">
+                    <strong>경도</strong>
+                    <input class="input-text" type="text" placeholder="경도 입력" name="longitude" id="">
                 </div>
             </div>
 

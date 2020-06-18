@@ -161,31 +161,6 @@
                         <ion-icon name="thumbs-up-outline" class="hidden"></ion-icon>
                     </div>
                 </div>
-
-<<<<<<< Updated upstream
-        <div class="col-xs-12">
-            <table class="table table-hover">
-                <tr>
-                    <th>No</th>
-                    <th>Subject</th>
-                    <th>Writer</th>
-                    <th>Date</th>
-                </tr>
-                <c:forEach var="l" items="${list}">
-                    <tr onclick="location.href='/detail/${l.store_id}'">
-                        <td>${l.store_name}</td>
-                        <td>${l.category}</td>
-                        <td>${l.views}</td>
-                        <td>${l.city_code}</td>
-                        <td>${l.distance}</td>
-                        <td>
-                            <fmt:formatDate value="${l.created_date}" pattern="yyyy.MM.dd HH:mm:ss"/>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-    </div>
         </div>
             <div class="page-nav">
                 <ion-icon name="chevron-back-outline"></ion-icon>
