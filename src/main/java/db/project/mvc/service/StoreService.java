@@ -64,12 +64,12 @@ public class StoreService {
         return storeMapper.storeList_CityWithKeyword(city_code,userID,keyword);
     }
 
-    public List<StoreVO> TopTenViewsStoreList(float latitude, float longitude) throws Exception{
-        return storeMapper.TopTenViewsStoreList(latitude,longitude);
+    public List<StoreVO> TopTenViewsStoreList(int userID) throws Exception{
+        return storeMapper.TopTenViewsStoreList(userID);
     }
 
-    public List<StoreVO> TopTenLikesStoreList(float latitude, float longitude) throws Exception{
-        return storeMapper.TopTenLikesStoreList(latitude,longitude);
+    public List<StoreVO> TopTenLikesStoreList(int userID) throws Exception{
+        return storeMapper.TopTenLikesStoreList(userID);
     }
 
 

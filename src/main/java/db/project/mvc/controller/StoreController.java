@@ -126,17 +126,17 @@ public class StoreController {
     @ResponseBody
     private List<StoreVO> TopTenViewsStoreList(@PathVariable int userID, Model model) throws Exception{
         UserVO user = storeService.getUser(userID);
-        List<StoreVO> stores = storeService.TopTenViewsStoreList(user.getLatitude(),user.getLongitude());
+        List<StoreVO> stores = storeService.TopTenViewsStoreList(userID);
         return stores;
     }
 
 //    우리 동네 좋아요 높은 순 상점 조회
     @RequestMapping("/TopTenLikesStoreList/{userID}")
     @ResponseBody
-    private List<StoreVO> TopTenLikesStoreList(@PathVariable int userID, Model model) throws Exception{
+    private List<StoreVO> TopTenLikesStoreList(@PathVariable(value="userID") int userID, Model model) throws Exception{
     UserVO user = storeService.getUser(userID);
 
-    List<StoreVO> stores = storeService.TopTenLikesStoreList(user.getLatitude(),user.getLongitude());
+    List<StoreVO> stores = storeService.TopTenLikesStoreList(userID);
     return stores;
 }
 
@@ -164,9 +164,10 @@ public class StoreController {
 
     @CrossOrigin(origins="http://localhost")
     @RequestMapping(value="/categoryList")
+    @ResponseBody
     private List<String> getCategoryList(Model model) throws Exception{
-        List<String> list =  storeService.getCategoryList();
-        return list;
+        List<String> categoryList= storeService.getCategoryList();
+        return categoryList;
     }
     
     //로그인
