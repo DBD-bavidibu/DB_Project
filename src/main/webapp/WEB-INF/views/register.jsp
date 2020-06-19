@@ -16,7 +16,7 @@
 <body>
     <div class="form-container register-container">
         <h1>회원 가입</h1>
-        <form action="#" class="form-box register-box" method="post">
+        <form action="/createUser" class="form-box register-box" method="post">
             <div class="agree-section">
                 <input type="checkbox" name="all-agree">이용 약관에 모두 동의합니다.<br>
                 <input type="checkbox" name="service-agree">[필수] 서비스 이용약관 동의<br>

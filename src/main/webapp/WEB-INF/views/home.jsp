@@ -17,7 +17,7 @@
 	</head>
 <body>
 <div class="content">
-        <div class="content">
+    <div class="content">
         <div class="search-part">
             <h3>가맹점 찾기</h3>
             <div class="textbox">
@@ -25,7 +25,7 @@
                 <input id="search-input" type="text" class="search" placeholder="내용을 입력해주세요">
                 <button class="search-button">검색</button>
             </div>
-            <div class="dropbox-part">
+            <div class="dropbox-part align-items-">
                 <div class="dropbox-container">
                     <div class="dropbox-title">
                         <h5 id="standard-label">기준점</h5>
@@ -79,13 +79,21 @@
                     </div>
                     <ul class="dropbox-list" id="category">
                         <li>지정안함</li>
-
                     </ul>
                 </div>
             </div>
+            <div class="floating">
+                <div class="btn btn-dark TopViews">
+                    <h5>우리 동네 조회수 Top 10 보기</h5>
+                </div>
+                <div class="btn btn-dark TopLikes">
+                    <h5>우리 동네 좋아요수 Top 10 보기</h5>
+                </div>
+            </div>
+
         </div>
         <div class="display-part">
-            <h3 id="display-title">조회수 Top 4</h3>
+            <h3 id="display-title"></h3>
             <div class="info-container">
                 <!-- <div class="card">
                     <img src="img/background.jpg" alt="배경" class="card-img">
@@ -113,6 +121,8 @@
             </div>
         </div>
     </div>
+</div>
+
     <footer>
         <span>디비디바비디부</span>
     </footer>

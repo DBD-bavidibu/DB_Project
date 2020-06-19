@@ -79,13 +79,15 @@
         order by views desc limit 10
     </select>
 
-    <select id="TopTenLikesStoreList" parameterType="float" resultType="db.project.mvc.domain.StoreVO">
-        select s.store_id, s.store_name,l.like_num from store s
-        join (  select store_id, count(store_id) as like_num
-                from likes group by store_id) l
-        on s.store_id = l.store_id
-        where earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude))&lt; 2000
-        order by l.like_num desc limit 10
+    <select id="TopTenLikesStoreList" parameterType="int" resultType="db.project.mvc.domain.StoreVO">
+        select *
+        from (select store_id, count(*) as likes_num from likes group by store_id) as LS
+        join
+        (select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date, earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance
+        from stores s join users u
+        on user_id=#{userID} and earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude))&lt;1000000) as SU
+        using(store_id)
+        order by likes_num limit 10
     </select>
 
 
@@ -111,9 +113,9 @@
         select EXISTS (select * from users where email=#{email} and password=#{password}) as isExisted;
     </select>
 
-    <insert id="createUser" parameterType="db.project.mvc.domain.UserVO" useGeneratedKeys="true" keyProperty="user_id">
-        insert into users(USER_NAME,EMAIL,PASSWORD,PHONE_NUMBER,LATITUDE,LONGITUDE)
-        values(#{user_name},#{email},#{password},#{phone_number},#{latitude},#{longitude})
+    <insert id="createUser" parameterType="db.project.mvc.domain.UserVO">
+        insert into users(USER_ID,USER_NAME,EMAIL,PASSWORD,PHONE_NUMBER,LATITUDE,LONGITUDE)
+        values(DEFAULT,#{user_name},#{email},#{password},#{phone_number},#{latitude},#{longitude})
     </insert>
 
     <update id="updateUser" parameterType="db.project.mvc.domain.UserVO">

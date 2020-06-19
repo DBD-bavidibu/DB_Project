@@ -16,14 +16,14 @@
 <body>
     <div class="form-container login-container">
         <h1>로그인</h1>
-        <form action="#" class="form-box login-box" method="post">
+        <form action="/loginUser" class="form-box login-box" method="post">
             <div class="textbox">
                 <ion-icon name="person-outline"></ion-icon>
-                <input class="input-text" type="text" placeholder="Email address" name="" value="">
+                <input class="input-text" type="text" placeholder="Email address" name="email" value="">
             </div>
             <div class="textbox">
                 <ion-icon name="apps-outline"></ion-icon>
-                <input class="input-text" type="text" placeholder="Password" name="" value="">
+                <input class="input-text" type="text" placeholder="Password" name="password" value="">
             </div>
 
             <input type="submit" class="btn" value="완료"></button>

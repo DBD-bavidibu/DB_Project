@@ -1,4 +1,42 @@
 window.onload = function () {
+
+    $(".TopViews").on('click', async  function()
+    {
+        console.log("눌리나")
+        $("#display-title").html(function(){
+            var title = "<h1> 우리동네 Top Views </h1>";
+            return title;
+        });
+        let storeList;
+        try{
+            storeList = await axios({method:'get',url:'http://localhost:8080/TopTenViewsStoreList/1'});
+        }
+        catch(e){
+            console.log(e);
+            return;
+        }
+        makecard(storeList);
+    });
+    $(".TopLikes").on('click', async  function()
+    {
+        console.log("눌리나")
+        $("#display-title").html(function(){
+            var title = "<h1> 우리동네 Top Likes </h1>";
+            return title;
+        });
+        let storeList;
+        try{
+            storeList = await axios({method:'get',url:'http://localhost:8080/TopTenLikesStoreList/1'});
+        }
+        catch(e){
+            console.log(e);
+            return;
+        }
+        makecard(storeList);
+    });
+
+
+
     //도시 정보를 입력 받는다.
     async function createSi() {
         let location_si = document.getElementById('location-si');
@@ -99,6 +137,7 @@ window.onload = function () {
     //서버서 응답 받아서 카드 만드는 함수.
     function makecard(response) {
         let infocontainer = document.querySelector('.info-container');
+
         jsondata = response.data;
         innerstring = ""
         jsondata.forEach((element) => {
@@ -127,6 +166,10 @@ window.onload = function () {
 
     //처음 로딩되는 카드들
     async function firstloading() {
+         $("#display-title").html(function(){
+             var title = "<h1> 가맹점 리스트 </h1>";
+             return title;
+         });
         let response;
         try {
             response = await axios({ method: 'get', url: 'http://localhost:8080/storeList' })
@@ -140,7 +183,7 @@ window.onload = function () {
     function parsinglabel() {
         let standardlabel = document.getElementById('standard-label');
         let distancelabel = document.getElementById('distance-label');
-        let localtionlabel = document.getElementById('location-si-label');
+        let locationlabel = document.getElementById('location-si-label');
         let categorylabel = document.getElementById('category-label');
         let keyword = document.getElementById('search-input').value;
 
@@ -150,7 +193,7 @@ window.onload = function () {
         let distance;
         let categorytext = categorylabel.innerText;
         let category;
-        let locationtext = localtionlabel.innerText;
+        let locationtext = locationlabel.innerText;
         let location;
 
         if (standardtext != "지정 안함" && standardtext != "기준점") {
@@ -192,13 +235,19 @@ window.onload = function () {
     }
 
     async function searchquerying() {
+
+        $("#display-title").html(function(){
+            var title = "<h1> 검색 결과 </h1>";
+            return title;
+        });
+
         let { location, category, distance, standard, keyword } = parsinglabel()
         let myquerystring = "";
         let userid = localStorage.getItem('user_id');
 
-        if (!((standard && distance) || location)) {
-            alert("기준 + 거리 나 지역 위치는 무조건 입력해야 합니다.");
-        }
+        // if (!((standard && distance) || location)) {
+        //     alert("기준 + 거리 나 지역 위치는 무조건 입력해야 합니다.");
+        // }
 
         if (standard) {
             if (standard == "집" && distance) {
@@ -220,6 +269,9 @@ window.onload = function () {
                 myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}`
             }
         }
+        else {
+            myquerystring = 'http://localhost:8080/storeList';
+        }
 
         if (!myquerystring) {
             alert("뭔가 입력이 잘못되었어요.");
@@ -228,6 +280,7 @@ window.onload = function () {
             let response;
             try {
                 response = await axios({ method: 'get', url: myquerystring });
+                console.log(response);
             } catch (e) {
                 console.log(e);
                 return;

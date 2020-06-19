@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.Request;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -136,7 +137,6 @@ public class StoreController {
     @RequestMapping("/TopTenViewsStoreList/{userID}")
     @ResponseBody
     private List<StoreVO> TopTenViewsStoreList(@PathVariable int userID, Model model) throws Exception{
-        UserVO user = storeService.getUser(userID);
         List<StoreVO> stores = storeService.TopTenViewsStoreList(userID);
         return stores;
     }
@@ -146,8 +146,6 @@ public class StoreController {
     @RequestMapping("/TopTenLikesStoreList/{userID}")
     @ResponseBody
     private List<StoreVO> TopTenLikesStoreList(@PathVariable(value="userID") int userID, Model model) throws Exception{
-    UserVO user = storeService.getUser(userID);
-
     List<StoreVO> stores = storeService.TopTenLikesStoreList(userID);
     return stores;
 }
@@ -190,16 +188,21 @@ public class StoreController {
     
     //로그인
     @CrossOrigin(origins="http://localhost")
-    @RequestMapping(value="/login/email/{email}/password/{password}")
-    private void loginUser(@PathVariable(value="email") String email, @PathVariable(value="password") String password, Model model) throws Exception{
-        model.addAttribute("isExisted",storeService.loginUser(email,password));
+    @RequestMapping(value="/loginUser")
+    private String loginUser(HttpServletRequest httpServletRequest, HttpServletResponse response, Model model) throws Exception{
+        String password = httpServletRequest.getParameter("password");
+        String email = httpServletRequest.getParameter("email");
+        System.out.println(password);
+
+        boolean isSuccess = storeService.loginUser(email,password);
+        System.out.println(isSuccess);
+        return "redirect:/";
     }
     
     //회원 가입
     @CrossOrigin(origins="http://localhost")
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    @ResponseBody
-    private void createUser(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
+    private String createUser(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
     	System.out.println("오냐..");
     	String user_name = httpServletRequest.getParameter("user_name");
     	float latitude = Float.valueOf(httpServletRequest.getParameter("latitude"));
@@ -207,6 +210,7 @@ public class StoreController {
     	String password = httpServletRequest.getParameter("password");
     	String email = httpServletRequest.getParameter("email");
     	String phone_number = httpServletRequest.getParameter("phone_number");
+        System.out.println(phone_number);
         boolean isSuccess = storeService.createUser(user_name,email,password,phone_number,latitude,longitude);
         String myjson;
         if(isSuccess) {
@@ -215,7 +219,9 @@ public class StoreController {
         	myjson = "{ \"result\" : \"no\"}";
         }
         
-        response.getWriter().print(myjson);
+//        response.getWriter().print(myjson);
+
+        return "redirect:/login";
     }
 
     //개인적인 테스트 부분입니다. 그냥 무시하세요.

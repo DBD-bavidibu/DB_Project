@@ -15,9 +15,11 @@ public class StoreVO {
 
     // 거리 계산을 위한 임시 변수
     private int distance;
+    private int likes_num;
 
     // 찜하기 여부를 위한 출력
     private boolean isLikes;
+
 
 
     public int getStore_id() {
