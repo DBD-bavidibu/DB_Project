@@ -51,9 +51,11 @@ public interface StoreMapper {
 
     List<StoreVO> TopTenLikesStoreList(int userID) throws Exception;
 
-    int insertLike(int userID, int storeID) throws Exception;
+    int insertLike(@Param("userID") int userID,
+                   @Param("storeID") int storeID) throws Exception;
 
-    int deleteLike(int likeID) throws Exception;
+    int deleteLike(@Param("userID") int userID,
+                   @Param("storeID") int storeID) throws Exception;
 
     List<CityVO> getCityList() throws Exception;
 

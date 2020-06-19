@@ -76,7 +76,7 @@ window.onload = function () {
             liked.addEventListener('click', async () => {
                 let response;
                 try {
-                    response = await axios({ method: 'get', url: `http://localhost:8080/deleteLike/${user_id}` });
+                    response = await axios({ method: 'get', url: `http://localhost:8080/deleteLike/1/${store_id}` });
                 } catch (e) {
                     console.log(e);
                 }
@@ -86,7 +86,7 @@ window.onload = function () {
             notliked.addEventListener('click', async () => {
                 let response;
                 try {
-                    response = await axios({ method: 'get', url: `http://localhost:8080/insertLike/${user_id}` });
+                    response = await axios({ method: 'get', url: `http://localhost:8080/insertLike/1/${store_id}` });
                 } catch (e) {
                     console.log(e);
                 }

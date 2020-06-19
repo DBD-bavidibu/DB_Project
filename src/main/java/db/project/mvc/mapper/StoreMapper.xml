@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="db.project.mvc.mapper.StoreMapper">
-    <insert id="insertStore" parameterType="db.project.mvc.domain.StoreVO" useGeneratedKeys="true" keyProperty="store_id">
+    <insert id="insertStore" parameterType="db.project.mvc.domain.StoreVO">
         insert into
-        STORES (STORE_ID, CITY_CODE, STORE_NAME, CATEGORY, ADDRESS, LATITUDE, LONGITUDE,VIEWS,CREATED_DATE)
-        VALUES (#{store_id},#{city_code},#{store_name},#{category},#{address},#{latitude},#{longitude},0,now())
+        STORES (CITY_CODE, STORE_NAME, CATEGORY, ADDRESS, LATITUDE, LONGITUDE,VIEWS,CREATED_DATE)
+        VALUES (DEFAULT ,#{city_code},#{store_name},#{category},#{address},#{latitude},#{longitude},0,now())
     </insert>
 
     <select id="storeList" resultType="db.project.mvc.domain.StoreVO">
@@ -89,14 +89,14 @@
     </select>
 
 
-    <insert id="insertLike" parameterType="db.project.mvc.domain.LikeVO" useGeneratedKeys="true" keyProperty="like_id">
+    <insert id="insertLike" parameterType="int">
         insert into
-        LIKES (LIKE_ID,USER_ID,STORE_ID)
-        VALUES(#{like_id},#{user_id},#{store_id});
+        LIKES (like_ID,user_ID,store_ID)
+        VALUES(DEFAULT ,#{userID},#{storeID})
     </insert>
 
     <delete id="deleteLike" parameterType="int">
-        delete from stores where store_id=#{storeID} and user_id=#{userID}
+        delete from likes where store_id=#{storeID} and user_id=#{userID}
     </delete>
 
     <select id="getCityList" resultType="db.project.mvc.domain.CityVO">

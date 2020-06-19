@@ -163,9 +163,11 @@ public class StoreController {
 
 //    Like를 DB에서 제거
     @CrossOrigin(origins="http://localhost")
-    @RequestMapping(value ="/deleteLike/{likeID}")
-    private void deleteLike(@PathVariable int likeID, Model model) throws Exception{
-        storeService.deleteLike(likeID);
+    @RequestMapping(value ="/deleteLike/{userID}/{storeID}")
+    @ResponseBody
+    private int deleteLike(@PathVariable(value="userID") int userID, @PathVariable(value="storeID") int storeID, Model model) throws Exception{
+        int result = storeService.deleteLike(userID,storeID);
+        return result;
     }
 
     // 도시 정보 ajax
