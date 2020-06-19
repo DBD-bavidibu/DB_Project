@@ -10,11 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/index.css"  type="text/css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/index.css"  type="text/css">
+        <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
         <title>List</title>
 	</head>
 <body>
 <div class="content">
+        <div class="content">
         <div class="search-part">
             <h3>가맹점 찾기</h3>
             <div class="textbox">
@@ -29,18 +31,23 @@
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
                     <ul class="dropbox-list" id="standard">
+                        <li>지정 안함</li>
                         <li>현재 위치</li>
                         <li>집</li>
                     </ul>
                 </div>
                 <div class="dropbox-container">
                     <div class="dropbox-title">
-                        <h5 id="distance-label">거리</h5>
+                        <h5 id="distance-label">거리(단위 m)</h5>
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
                     <ul class="dropbox-list" id="distance">
-                        <li>100m</li>
-                        <li>200m</li>
+                        <li>지정 안함</li>
+                        <li>100</li>
+                        <li>200</li>
+                        <li>500</li>
+                        <li>1000</li>
+                        <li>2000</li>
                     </ul>
                 </div>
                 <div class="dropbox-container">
@@ -49,10 +56,8 @@
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
                     <ul class="dropbox-list" id="location-si">
-                        <li>수원시</li>
-                        <li>화성시</li>
-                        <li>오산시</li>
-                        <li>암튼 데이터</li>
+                        <li>지정 안함</li>
+
                     </ul>
                 </div>
                 <div class="dropbox-container">
@@ -61,6 +66,7 @@
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
                     <ul class="dropbox-list" id="location-gu">
+                        <li>지정 안함</li>
                         <li>영통구</li>
                         <li>권선구</li>
                     </ul>
@@ -71,9 +77,8 @@
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
                     <ul class="dropbox-list" id="category">
-                        <li>외식</li>
-                        <li>한식</li>
-                        <li>치킨</li>
+                        <li>지정안함</li>
+
                     </ul>
                 </div>
             </div>
@@ -81,7 +86,7 @@
         <div class="display-part">
             <h3 id="display-title">조회수 Top 4</h3>
             <div class="info-container">
-                <div class="card">
+                <!-- <div class="card">
                     <img src="img/background.jpg" alt="배경" class="card-img">
                     <h1>에이바우트커피 아주대점</h1>
                     <div class="about">
@@ -93,75 +98,11 @@
                             <h5>조회수 : 1323</h5>
                             <h5>좋아요수 : 543</h5>
                         </div>
-                        <ion-icon name="thumbs-up-sharp"></ion-icon>
-                        <ion-icon name="thumbs-up-outline" class="hidden"></ion-icon>
+                        <ion-icon name="thumbs-up-sharp" class="liked"></ion-icon>
+                        <ion-icon name="thumbs-up-outline" class="notliked hidden"></ion-icon>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="img/background.jpg" alt="배경" class="card-img">
-                    <h1>에이바우트커피 아주대점</h1>
-                    <div class="about">
-                        <h5>카테고리 : 카페</h5>
-                        <h5>주소 : 경기 수원시 영통구 망포동 570-5</h5>
-                    </div>
-                    <div class="prefer">
-                        <div>
-                            <h5>조회수 : 1323</h5>
-                            <h5>좋아요수 : 543</h5>
-                        </div>
-                        <ion-icon name="thumbs-up-sharp"></ion-icon>
-                        <ion-icon name="thumbs-up-outline" class="hidden"></ion-icon>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/background.jpg" alt="배경" class="card-img">
-                    <h1>에이바우트커피 아주대점</h1>
-                    <div class="about">
-                        <h5>카테고리 : 카페</h5>
-                        <h5>주소 : 경기 수원시 영통구 망포동 570-5</h5>
-                    </div>
-                    <div class="prefer">
-                        <div>
-                            <h5>조회수 : 1323</h5>
-                            <h5>좋아요수 : 543</h5>
-                        </div>
-                        <ion-icon name="thumbs-up-sharp"></ion-icon>
-                        <ion-icon name="thumbs-up-outline" class="hidden"></ion-icon>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/background.jpg" alt="배경" class="card-img">
-                    <h1>에이바우트커피 아주대점</h1>
-                    <div class="about">
-                        <h5>카테고리 : 카페</h5>
-                        <h5>주소 : 경기 수원시 영통구 망포동 570-5</h5>
-                    </div>
-                    <div class="prefer">
-                        <div>
-                            <h5>조회수 : 1323</h5>
-                            <h5>좋아요수 : 543</h5>
-                        </div>
-                        <ion-icon name="thumbs-up-sharp"></ion-icon>
-                        <ion-icon name="thumbs-up-outline" class="hidden"></ion-icon>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/background.jpg" alt="배경" class="card-img">
-                    <h1>에이바우트커피 아주대점</h1>
-                    <div class="about">
-                        <h5>카테고리 : 카페</h5>
-                        <h5>주소 : 경기 수원시 영통구 망포동 570-5</h5>
-                    </div>
-                    <div class="prefer">
-                        <div>
-                            <h5>조회수 : 1323</h5>
-                            <h5>좋아요수 : 543</h5>
-                        </div>
-                        <ion-icon name="thumbs-up-sharp"></ion-icon>
-                        <ion-icon name="thumbs-up-outline" class="hidden"></ion-icon>
-                    </div>
-                </div>
-        </div>
+                </div> -->
+            </div>
             <div class="page-nav">
                 <ion-icon name="chevron-back-outline"></ion-icon>
                 <a href="#" class="now">1</a>

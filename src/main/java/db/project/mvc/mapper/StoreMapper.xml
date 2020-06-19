@@ -11,7 +11,7 @@
     </insert>
 
     <select id="storeList" resultType="db.project.mvc.domain.StoreVO">
-        select * from stores;
+        select * from stores order by views desc limit 10;
     </select>
 
     <select id="storeDetail" parameterType="int" resultType="db.project.mvc.domain.StoreVO">

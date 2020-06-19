@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    width: 100%;
+}
+
+.content{
+    width: 80%;
+    max-width: 830px;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.content > h1{
+    background-color: rgb(223, 222, 222);
+    color: black;
+    font-size: 4rem;
+    padding-left: 1rem;
+    border-radius: 10px;
+}
+
+.content > .search-part{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    height: 4rem;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.search-part > ion-icon{
+    flex: 0 0 6rem;
+    font-size: 3rem;
+    margin-top: 2px;
+}
+
+.search-part > input{
+    flex: 1;
+    outline: none;
+    text-decoration: none;
+    border:none;
+    height: 90%;
+    margin-top: 2px;
+}
+
+.search-part > button{
+    flex: 0 0 6rem;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    border:none;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.my-zim{
+    width: 100%;
+    margin-top : 4rem;
+    border-bottom: 1px solid black;
+}
+
+.my-zim > .row{
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid rgb(180, 180, 180);
+    padding: .6rem 0;
+    background-color: white;
+    font-size: 1.5rem;
+    font-weight: 540;
+}
+
+.my-zim .title-container{
+    font-size: 1.7rem;
+    font-weight: 600;
+    background-color: rgb(240, 240, 240);
+}
+
+.row > .col1{
+    flex : 1;
+    text-align: center;
+}
+
+.row > .col2{
+    flex: 2;
+    text-align: center;
+}
+
+.row > .col3{
+    flex: 2;
+}
+
+.row > .col4{
+    flex: 0 0 5rem;
+}
+
+.col4 > button{
+    border :none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: .1rem 0;
+    width: 100%;
+    padding: .3rem;
+    font-weight: 600;
+}
+
+.col4 > button:hover{
+    background-color: black;
+    color:white;
+}
+
+.page-nav{
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 2.5rem;
+}
+
+.page-nav a{
+    text-decoration: none;
+    outline: none;
+    color:gray;
+    cursor: pointer;
+    margin: 0 .5rem;
+    margin-top: -1rem;
+    padding: .2rem 1rem;
+    border-radius: 50%;
+}
+
+.paga-nav ion-icon{
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.page-nav a:hover,
+.page-nav ion-icon:hover{
+    background-color: gainsboro;
+}
+
+.page-nav .now{
+    color:black;
+}

@@ -23,8 +23,6 @@ public class StoreController {
 
     @RequestMapping("/")
     private String getHomePage(Model model) throws Exception{
-        //가맹점의 전체 리스트를 불러옴
-        model.addAttribute("list",storeService.storeList());
         return "home";
     }
     @RequestMapping("/login")
@@ -51,7 +49,15 @@ public class StoreController {
         return "searchUser";
     }
 
-
+//  처음 시작될 때 이거 부릅니다.
+    @CrossOrigin(origins="http://localhost")
+    @RequestMapping(value="/storeList")
+    @ResponseBody
+    private List<StoreVO> storeList_default() throws Exception{
+    	List<StoreVO> stores = storeService.storeList();
+    	return stores;
+    }
+    
 //   가맹점의 상세 정보를 불러옴
     @CrossOrigin(origins="http://localhost")
     @RequestMapping("/detail/{storeID}/{userID}")
@@ -72,6 +78,7 @@ public class StoreController {
     }
 
 //    집으로부터 특정 거리 이내의 가맹점 중에 특정 카테고리인 가맹점 리스트
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/storeList/home/{distance}/user/{userID}/category/{category}")
     @ResponseBody
     private List<StoreVO> storeList_HomeDistanceWithCategory(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
@@ -80,6 +87,7 @@ public class StoreController {
     }
 
 //    집으로부터 특정 거리 이내의 가맹점 중에 키워드를 포함하는 리스트 (카테고리, 이름)
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/storeList/home/{distance}/user/{userID}/keyword/{keyword}")
     @ResponseBody
     private List<StoreVO> storeList_HomeDistanceWithKeyword(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="keyword") String keyword, Model model) throws Exception{
@@ -96,6 +104,7 @@ public class StoreController {
         return stores;
     }
 
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}/category/{category}")
     @ResponseBody
     private List<StoreVO> storeList_CityWithCategory(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
@@ -103,6 +112,7 @@ public class StoreController {
         return stores;
     }
 
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}/keyword/{keyword}")
     @ResponseBody
     private List<StoreVO> storeList_CityWithKeyword(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID,  @PathVariable(value="keyword") String keyword,Model model) throws Exception {
@@ -112,6 +122,7 @@ public class StoreController {
 
 
 //   유저가 좋아요한 가맹점 리스트
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/storeList/UserLike/{userID}}")
     @ResponseBody
     private List<StoreVO> storeList_UserLike(@PathVariable int userID, Model model) throws Exception{
@@ -131,6 +142,7 @@ public class StoreController {
     }
 
 //    우리 동네 좋아요 높은 순 상점 조회
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping("/TopTenLikesStoreList/{userID}")
     @ResponseBody
     private List<StoreVO> TopTenLikesStoreList(@PathVariable(value="userID") int userID, Model model) throws Exception{
@@ -141,7 +153,8 @@ public class StoreController {
 }
 
 //  Like를 DB에 추가
-    @RequestMapping(value = "/insertLike/{userID}}/{storeID}")
+    @CrossOrigin(origins="http://localhost")
+    @RequestMapping(value = "/insertLike/{userID}/{storeID}")
     @ResponseBody
     private int insertLike(@PathVariable(value="userID") int userID, @PathVariable(value="storeID") int storeID, Model model) throws Exception{
         int result = storeService.insertLike(userID,storeID);
@@ -149,11 +162,13 @@ public class StoreController {
     }
 
 //    Like를 DB에서 제거
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping(value ="/deleteLike/{likeID}")
     private void deleteLike(@PathVariable int likeID, Model model) throws Exception{
         storeService.deleteLike(likeID);
     }
 
+    // 도시 정보 ajax
     @CrossOrigin(origins="http://localhost")
     @RequestMapping(value = "/cityList")
     @ResponseBody
@@ -162,6 +177,7 @@ public class StoreController {
         return list;
     }
 
+    // 음식점 정보 ajax
     @CrossOrigin(origins="http://localhost")
     @RequestMapping(value="/categoryList")
     @ResponseBody
@@ -171,6 +187,7 @@ public class StoreController {
     }
     
     //로그인
+    @CrossOrigin(origins="http://localhost")
     @RequestMapping(value="/login/email/{email}/password/{password}")
     private void loginUser(@PathVariable(value="email") String email, @PathVariable(value="password") String password, Model model) throws Exception{
         model.addAttribute("isExisted",storeService.loginUser(email,password));
