@@ -13,6 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/showbytable.css"  type="text/css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/zimlist.js"></script>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <title>Document</title>
 </head>
@@ -28,65 +30,9 @@
         <div class="my-zim">
             <div class="row title-container">
                 <div class="col1 title">No.</div>
-                <div class="col2 title">찜한 날짜</div>
+                <div class="col2 title">카테고리</div>
                 <div class="col3 title">가맹점 이름</div>
                 <div class="col4"></div>
-            </div>
-            <div class="row">
-                <div class="col1">1</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col1">2</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col1">3</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col1">4</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col1">5</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col1">6</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col1">7</div>
-                <div class="col2">2020-5-20</div>
-                <div class="col3">홍익돈까스 의왕왕송호수점</div>
-                <div class="col4">
-                    <button>삭제</button>
-                </div>
             </div>
         </div>
         <div class="page-nav">
@@ -98,5 +44,6 @@
         </div>
     </div>
 </body>
+
 
 </html>

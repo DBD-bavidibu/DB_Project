@@ -12,9 +12,9 @@ import java.util.Date;
 public class InitDB {
 
     //본인의 DB 정보 넣으시면 됩니다.
-    private String DBURL = "jdbc:postgresql://localhost:5432/DB_Project";
+    private String DBURL = "jdbc:postgresql://localhost:5432/db_project";
     private String DBUser = "postgres";
-    private String DBPassword = "0000";
+    private String DBPassword = "blackapple";
 
     Connection connection;
     Statement statement;
@@ -33,14 +33,14 @@ public class InitDB {
      * drop table : 테이블 초기화시켜야할 때
      *****************************/
     public void dropTable() throws SQLException {
-        String dropTable = "DROP TABLE IF EXISTS Stores;";
-        statement.executeUpdate(dropTable);
-        dropTable="DROP TABLE IF EXISTS Users;";
-        statement.executeUpdate(dropTable);
-        dropTable="DROP TABLE IF EXISTS Cities;";
-        statement.executeUpdate(dropTable);
-        dropTable="DROP TABLE IF EXISTS Likes;";
-        statement.executeUpdate(dropTable);
+       String dropTable = "DROP TABLE IF EXISTS Stores;";
+       statement.executeUpdate(dropTable);
+       dropTable="DROP TABLE IF EXISTS Users;";
+       statement.executeUpdate(dropTable);
+       dropTable="DROP TABLE IF EXISTS Cities;";
+       statement.executeUpdate(dropTable);
+       dropTable="DROP TABLE IF EXISTS Likes;";
+       statement.executeUpdate(dropTable);
     }
 
     /*****************************************

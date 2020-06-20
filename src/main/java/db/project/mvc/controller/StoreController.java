@@ -49,6 +49,11 @@ public class StoreController {
     private String searchUser() throws Exception{
         return "searchUser";
     }
+    
+    @RequestMapping("/zimlist")
+    private String zimlistUser() throws Exception{
+    	return "showbytable";
+    }
 
 //  처음 시작될 때 이거 부릅니다.
     @CrossOrigin(origins="http://localhost")
@@ -125,7 +130,7 @@ public class StoreController {
 
 //   유저가 좋아요한 가맹점 리스트
     @CrossOrigin(origins="http://localhost")
-    @RequestMapping("/storeList/UserLike/{userID}}")
+    @RequestMapping("/storeList/UserLike/{userID}")
     @ResponseBody
     private List<StoreVO> storeList_UserLike(@PathVariable int userID, Model model) throws Exception{
         // 유저가 좋아요한 가맹점 리스트 불러오기
@@ -198,21 +203,31 @@ public class StoreController {
     
     //로그인
     @CrossOrigin(origins="http://localhost")
-    @RequestMapping(value="/loginUser")
-    private String loginUser(HttpServletRequest httpServletRequest, HttpServletResponse response, Model model) throws Exception{
+    @RequestMapping(value="/loginUser", method = RequestMethod.POST)
+    @ResponseBody
+    private void loginUser(HttpServletRequest httpServletRequest, HttpServletResponse response, Model model) throws Exception{
         String password = httpServletRequest.getParameter("password");
         String email = httpServletRequest.getParameter("email");
         System.out.println(password);
 
         boolean isSuccess = storeService.loginUser(email,password);
         System.out.println(isSuccess);
-        return "redirect:/";
+        String myjson;
+        if(isSuccess) {
+        	myjson = "{ \"result\" : \"ok\"}";
+        }else {
+        	myjson = "{ \"result\" : \"no\"}";
+        }
+        //return "redirect:/";
+        response.getWriter().print(myjson);
+       
     }
     
     //회원 가입
     @CrossOrigin(origins="http://localhost")
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-    private String createUser(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
+    @ResponseBody
+    private void createUser(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
     	System.out.println("오냐..");
     	String user_name = httpServletRequest.getParameter("user_name");
     	float latitude = Float.valueOf(httpServletRequest.getParameter("latitude"));
@@ -229,32 +244,9 @@ public class StoreController {
         	myjson = "{ \"result\" : \"no\"}";
         }
         
-//        response.getWriter().print(myjson);
+        response.getWriter().print(myjson);
 
-        return "redirect:/login";
-    }
-
-    //개인적인 테스트 부분입니다. 그냥 무시하세요.
-    @CrossOrigin(origins="http://localhost")
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    @ResponseBody
-    private void test(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
-    	String user_name = httpServletRequest.getParameter("user_name");
-    	String password = httpServletRequest.getParameter("password");
-    	boolean isSuccess;
-    	if(user_name.equals("구교현")) {
-    		isSuccess = true;
-    	}else {
-    		isSuccess = false;
-    	}
-
-    	String myjson;
-        if(isSuccess) {
-        	myjson = "{ \"result\" : true}";
-        }else {
-        	myjson = "{ \"result\" : false}";
-        }
-    	response.getWriter().print(myjson);
+//        return "redirect:/login";
     }
     
     //회원 정보 수정

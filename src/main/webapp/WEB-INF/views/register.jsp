@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/frame.css"  type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/register.css"  type="text/css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/register.js"></script>
     <title>Document</title>
 </head>
 
@@ -18,7 +20,6 @@
         <h1>회원 가입</h1>
         <form action="/createUser" class="form-box register-box" method="post">
             <div class="agree-section">
-                <input type="checkbox" name="all-agree">이용 약관에 모두 동의합니다.<br>
                 <input type="checkbox" name="service-agree">[필수] 서비스 이용약관 동의<br>
                 <input type="checkbox" name="collect-agree">[필수] 개인정보 수집 및 이용 동의<br>
             </div>
@@ -50,7 +51,7 @@
                 </div>
             </div>
 
-            <input class="btn" type="submit" value="가입 완료">
+            <input class="btn" type="submit" value="가입 완료" id="submit-reg">
         </form>
     </div>
 </body>

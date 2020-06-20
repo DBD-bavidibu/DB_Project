@@ -28,11 +28,11 @@
                     <a href="./updateUser">
                         <ion-icon name="arrow-forward-outline"></ion-icon> 회원 정보 수정
                     </a>
+                    <a href="#">
+                        <ion-icon name="arrow-forward-outline"></ion-icon> 회원 탈퇴
+                    </a>
                     <a href="./zimlist">
                         <ion-icon name="arrow-forward-outline"></ion-icon> 찜한 목록 확인
-                    </a>
-                    <a href="#">
-                        <ion-icon name="arrow-forward-outline"></ion-icon> 나의 집 주변 추천
                     </a>
                 </div>
                 <img src="./img/background.jpg" alt="">

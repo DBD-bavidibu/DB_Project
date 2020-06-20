@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/frame.css"  type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/login.css"  type="text/css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
     <title>Document</title>
 </head>
 
@@ -26,7 +28,7 @@
                 <input class="input-text" type="text" placeholder="Password" name="password" value="">
             </div>
 
-            <input type="submit" class="btn" value="완료"></button>
+            <input type="submit" class="btn login-submit" value="완료"></button>
             <a href="./register" class="btn" value="Register">회원가입</a>
             <div class="more">
                 <a href="./searchUser">아이디/비밀번호 찾기</a>

@@ -37,7 +37,21 @@ window.onload = function () {
         makecard(storeList);
     });
 
-
+    function checklogin() {
+        if (localStorage.getItem('user_id')) {
+            return true;
+        } else {
+            location.href = "/login";
+        }
+    }
+    
+    function logout() {
+        let logout = document.querySelector('#logout');
+        logout.addEventListener('click', () => {
+            localStorage.removeItem('user_id');
+            location.href = "/login";
+        })
+    }
 
     //도시 정보를 입력 받는다.
     async function createSi() {
@@ -114,8 +128,9 @@ window.onload = function () {
             //좋아요 한거 클릭시 해제
             liked.addEventListener('click', async () => {
                 let response;
+           
                 try {
-                    response = await axios({ method: 'get', url: `http://localhost:8080/deleteLike/1/${store_id}` });
+                    response = await axios({ method: 'get', url: `http://localhost:8080/deleteLike/${user_id}/${store_id}` });
                 } catch (e) {
                     console.log(e);
                 }
@@ -125,7 +140,7 @@ window.onload = function () {
             notliked.addEventListener('click', async () => {
                 let response;
                 try {
-                    response = await axios({ method: 'get', url: `http://localhost:8080/insertLike/1/${store_id}` });
+                    response = await axios({ method: 'get', url: `http://localhost:8080/insertLike/${user_id}/${store_id}` });
                 } catch (e) {
                     console.log(e);
                 }
@@ -338,7 +353,8 @@ window.onload = function () {
         button.addEventListener('click', searchquerying);
     }
 
-    localStorage.setItem('user_id', 1);
+    checklogin();
+    logout();
     createSi();
     createCategory();
     firstloading();
@@ -346,7 +362,7 @@ window.onload = function () {
 
     document.getElementById('go-mypage').addEventListener('click',
         () => {
-            location.href = "./mypage.html";
+            location.href = "./mypage";
         })
 
 }
