@@ -71,6 +71,9 @@ public class StoreService {
     public List<StoreVO> TopTenLikesStoreList(int userID) throws Exception{
         return storeMapper.TopTenLikesStoreList(userID);
     }
+    public boolean isLiked(int userID, int storeID) throws Exception{
+        return storeMapper.isLiked(userID,storeID);
+    }
 
 
 

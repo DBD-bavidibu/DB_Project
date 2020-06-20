@@ -1,9 +1,24 @@
-$(document).ready(function () {
 
-    $(".liked").on("click",function(){
+$(document).ready(function () {
+    let isLiked;
+    try {
+        isLiked = axios({ method: 'get', url: 'http://localhost:8080/isLiked/1/'+store_id});
+        isLiked = isLiked.data;
+    } catch (e) {
+        console.log(e);
+    }
+    console.log(isLiked);
+    if(isLiked){
+        $(".unliked").addClass("hidden");
+    }
+    else{
+        $(".liked").addClass("hidden");
+    }
+
+    $(".liked").on("click",async function(){
         let response;
         try{
-            response = axios({method:'get',url:'http://localhost:8080/deleteLike/1/'+store_id});
+            response = await axios({method:'get',url:'http://localhost:8080/deleteLike/1/'+store_id});
         }
         catch (e){
             console.log(e);
@@ -13,10 +28,10 @@ $(document).ready(function () {
         $(".unliked").removeClass('hidden');
     });
 
-    $(".unliked").on("click",function(){
+    $(".unliked").on("click",async function(){
         let response;
         try {
-            response = axios({method: 'get', url: 'httpL//localhost:8080/insertLike/1' + store_id});
+            response = await axios({method: 'get', url: 'http://localhost:8080/insertLike/1/' + store_id});
         }
         catch(e){
             console.log(e);

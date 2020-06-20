@@ -51,6 +51,9 @@ public interface StoreMapper {
 
     List<StoreVO> TopTenLikesStoreList(int userID) throws Exception;
 
+    boolean isLiked(@Param("userID") int userID,
+                    @Param("storeID") int storeID) throws Exception;
+
     int insertLike(@Param("userID") int userID,
                    @Param("storeID") int storeID) throws Exception;
 

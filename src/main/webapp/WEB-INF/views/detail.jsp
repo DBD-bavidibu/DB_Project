@@ -19,7 +19,7 @@
         .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     </style>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/detail.css"  type="text/css">
-    <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/detail.js?ver=1"></script>
 </head>
 <body>
     <div class="content">
@@ -82,7 +82,7 @@
                     class="btn" value="Register">길찾기</a>
                 <a>
                     <ion-icon name="thumbs-up-sharp" class="liked"></ion-icon>
-                    <ion-icon name="thumbs-up-outline" class="unliked hidden"></ion-icon>
+                    <ion-icon name="thumbs-up-outline" class="unliked"></ion-icon>
                 </a>
             </div>
             <div class="text-info">
@@ -92,7 +92,8 @@
                     주소 :
                     <c:out value="${detail.address}" /></br>
                     집에서부터 거리 : ${detail.distance}</br>
-                    현재 위치에서부터 거리 : </br>
+                    조회 수  :  ${detail.views}</br>
+                    좋아요 수 : ${detail.likes_num}</br>
                 </p>
             </div>
         </div>

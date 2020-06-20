@@ -2,7 +2,6 @@ window.onload = function () {
 
     $(".TopViews").on('click', async  function()
     {
-        console.log("눌리나")
         $("#display-title").html(function(){
             var title = "<h1> 우리동네 Top Views </h1>";
             return title;
@@ -11,12 +10,13 @@ window.onload = function () {
         try{
             storeList = await axios({method:'get',url:'http://localhost:8080/TopTenViewsStoreList/1'});
         }
-        catch(e){
+        catch(e) {
             console.log(e);
             return;
         }
         makecard(storeList);
     });
+
     $(".TopLikes").on('click', async  function()
     {
         console.log("눌리나")
@@ -135,31 +135,62 @@ window.onload = function () {
     }
 
     //서버서 응답 받아서 카드 만드는 함수.
-    function makecard(response) {
+    async function makecard(response) {
         let infocontainer = document.querySelector('.info-container');
 
         jsondata = response.data;
         innerstring = ""
-        jsondata.forEach((element) => {
-            plusstring = `
-            <div class="card" data-store_id="${element.store_id}">
-                <div class="topcover"></div>
-                <h1>${element.store_name}</h1>
-                <div class="about">
-                    <h5>카테고리 : ${element.category}</h5>
-                    <h5>주소 : ${element.address}</h5>
-                </div>
-                <div class="prefer">
-                    <div>
-                        <h5>조회수 : ${element.views}</h5>
+        for (const element of jsondata) {
+            let isLiked;
+            try {
+                isLiked = await axios({ method: 'get', url: `http://localhost:8080/isLiked/1/${element.store_id}` });
+                isLiked = isLiked.data;
+            } catch (e) {
+                console.log(e);
+            }
+            console.log(isLiked);
+            if(isLiked){
+                plusstring = `
+                <div class="card" data-store_id="${element.store_id}">
+                    <div class="topcover"></div>
+                    <h1>${element.store_name}</h1>
+                    <div class="about">
+                        <h5>카테고리 : ${element.category}</h5>
+                        <h5>주소 : ${element.address}</h5>
                     </div>
-                    <ion-icon name="thumbs-up-sharp" class="liked hidden"></ion-icon>
-                    <ion-icon name="thumbs-up-outline" class="notliked"></ion-icon>
-                </div>
-            </div>`;
+                    <div class="prefer">
+                        <div>
+                            <h5>조회수 : ${element.views}</h5>
+                            <h5>좋아요 수 : ${element.likes_num}</h5>
+                        </div>
+                        <ion-icon name="thumbs-up-sharp" class="liked"></ion-icon>
+                        <ion-icon name="thumbs-up-outline" class="notliked hidden"></ion-icon>
+                    </div>
+                </div>`;
+            }
+            else {
+                plusstring = `
+                <div class="card" data-store_id="${element.store_id}">
+                    <div class="topcover"></div>
+                    <h1>${element.store_name}</h1>
+                    <div class="about">
+                        <h5>카테고리 : ${element.category}</h5>
+                        <h5>주소 : ${element.address}</h5>
+                    </div>
+                    <div class="prefer">
+                        <div>
+                            <h5>조회수 : ${element.views}</h5>
+                            <h5>좋아요 수 : ${element.likes_num}</h5>
+                        </div>
+                        <ion-icon name="thumbs-up-sharp" class="liked hidden"></ion-icon>
+                        <ion-icon name="thumbs-up-outline" class="notliked"></ion-icon>
+                    </div>
+                </div>`;
+            }
             innerstring = innerstring + plusstring;
-        });
+        }
         infocontainer.innerHTML = innerstring;
+
         let cards = infocontainer.querySelectorAll('.card');
         cardlink(cards);
     }

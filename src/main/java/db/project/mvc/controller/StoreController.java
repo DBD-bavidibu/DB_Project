@@ -56,6 +56,7 @@ public class StoreController {
     @ResponseBody
     private List<StoreVO> storeList_default() throws Exception{
     	List<StoreVO> stores = storeService.storeList();
+//        System.out.println(stores);
     	return stores;
     }
     
@@ -149,6 +150,15 @@ public class StoreController {
     List<StoreVO> stores = storeService.TopTenLikesStoreList(userID);
     return stores;
 }
+
+    @CrossOrigin(origins="http://localhost")
+    @RequestMapping("/isLiked/{userID}/{storeID}")
+    @ResponseBody
+    private boolean isLiked(@PathVariable(value="userID") int userID, @PathVariable(value="storeID") int storeID) throws Exception{
+        boolean isLiked= storeService.isLiked(userID,storeID);
+        return isLiked;
+    }
+
 
 //  Like를 DB에 추가
     @CrossOrigin(origins="http://localhost")
