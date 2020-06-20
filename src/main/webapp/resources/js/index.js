@@ -1,5 +1,7 @@
 window.onload = function () {
 
+    let location_rep;
+
     $(".TopViews").on('click', async  function()
     {
         $("#display-title").html(function(){
@@ -40,7 +42,6 @@ window.onload = function () {
     //도시 정보를 입력 받는다.
     async function createSi() {
         let location_si = document.getElementById('location-si');
-        let location_rep;
         try {
             location_rep = await axios({ method: 'get', url: 'http://localhost:8080/cityList' });
         } catch (e) {
@@ -266,38 +267,44 @@ window.onload = function () {
     }
 
     async function searchquerying() {
-
-        $("#display-title").html(function(){
-            var title = "<h1> 검색 결과 </h1>";
-            return title;
-        });
+        let locationlabel = document.getElementById('location-si-label');
+        let locationtext = locationlabel.innerText;
 
         let { location, category, distance, standard, keyword } = parsinglabel()
         let myquerystring = "";
+        let searchstring ="";
         let userid = localStorage.getItem('user_id');
+        console.log(userid);
 
-        // if (!((standard && distance) || location)) {
-        //     alert("기준 + 거리 나 지역 위치는 무조건 입력해야 합니다.");
-        // }
+        if (((standard && distance) && location)) {
+            alert("기준점 또는 도시 중에서 하나만 고르세요");
+        }
 
         if (standard) {
             if (standard == "집" && distance) {
                 if (category) {
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}/category/${category}`;
+                    searchstring = `\'집 주변 ${distance}m\', 카테고리 : \'${category}\'로 검색한 결과`
                 }
                 else if (keyword) {
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}/keyword/${keyword}`;
+                    searchstring = `\'집 주변 ${distance}m\', 키워드 : \'${category}\'로 검색한 결과`
                 } else {
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}`;
+                    searchstring = `\'집 주변 ${distance}m\' 로 검색한 결과`
                 }
             }
         } else if (location) {
+            console.log(location);
             if (category) {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}/category/${category}`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}/category/${category}`
+                searchstring = `\' 도시 : ${locationtext}\', 카테고리 : \'${category}\'로 검색한 결과`
             } else if (keyword) {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}/keyword/${keyword}`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}/keyword/${keyword}`
+                searchstring = `\'도시 : ${locationtext}\', 키워드 : \'${keyword}\'로 검색한 결과`
             } else {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}`
+                searchstring = `\'도시 : ${locationtext}\' 로 검색한 결과`
             }
         }
         else {
@@ -318,6 +325,10 @@ window.onload = function () {
             }
             makecard(response);
         }
+        $("#display-title").html(function(){
+            var title = "<h1>"+searchstring+ "</h1>";
+            return title;
+        });
     }
 
     function searchbutton() {
