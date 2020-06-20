@@ -33,7 +33,6 @@
                     </div>
                     <ul class="dropbox-list" id="standard">
                         <li>지정 안함</li>
-                        <li>현재 위치</li>
                         <li>집</li>
                     </ul>
                 </div>
@@ -62,17 +61,17 @@
 
                     </ul>
                 </div>
-                <div class="dropbox-container">
-                    <div class="dropbox-title">
-                        <h5 id="location-gu-label">지역(구)</h5>
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </div>
-                    <ul class="dropbox-list" id="location-gu">
-                        <li>지정 안함</li>
-                        <li>영통구</li>
-                        <li>권선구</li>
-                    </ul>
-                </div>
+<%--                <div class="dropbox-container">--%>
+<%--                    <div class="dropbox-title">--%>
+<%--                        <h5 id="location-gu-label">지역(구)</h5>--%>
+<%--                        <ion-icon name="chevron-down-outline"></ion-icon>--%>
+<%--                    </div>--%>
+<%--                    <ul class="dropbox-list" id="location-gu">--%>
+<%--                        <li>지정 안함</li>--%>
+<%--                        <li>영통구</li>--%>
+<%--                        <li>권선구</li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
                 <div class="dropbox-container">
                     <div class="dropbox-title">
                         <h5 id="category-label">카테고리</h5>

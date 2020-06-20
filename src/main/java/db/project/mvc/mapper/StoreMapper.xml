@@ -128,7 +128,7 @@
 
     <update id="updateUser" parameterType="db.project.mvc.domain.UserVO">
         update users
-        set username=#{user_name},
+        set user_name=#{user_name},
             email=#{email},
             password=#{password},
             phone_number=#{phone_number},
@@ -137,7 +137,7 @@
         where user_id=#{user_id}
     </update>
 
-    <delete id="deleteUser" parameterType="int">
+    <delete id="deleteUser" parameterType="int">ke
         delete from users
         where user_id=#{user_id} and password=#{password}
     </delete>

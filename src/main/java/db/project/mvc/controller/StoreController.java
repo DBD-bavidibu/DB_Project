@@ -50,7 +50,7 @@ public class StoreController {
         return "searchUser";
     }
     
-    @RequestMapping("/zimlist")
+    @RequestMapping("/showbytable")
     private String zimlistUser() throws Exception{
     	return "showbytable";
     }

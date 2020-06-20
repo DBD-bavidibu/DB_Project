@@ -3,6 +3,7 @@ window.onload = function () {
         let myzim = document.querySelector(".my-zim");
         let innerstring = myzim.innerHTML;
         let userid = localStorage.getItem('user_id');
+        console.log(userid);
         let response;
         try {
             response = await axios({ method: "get", url: `http://localhost:8080/storeList/UserLike/${userid}` });
@@ -34,7 +35,7 @@ window.onload = function () {
         let myzim = document.querySelector('.my-zim');
 
         delbutton.forEach(element => {
-            console.log(element);
+            // console.log(element);
             let button = element.querySelector('button');
             if (button) {
                 let index = element.dataset.index;
