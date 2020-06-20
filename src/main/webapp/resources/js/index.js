@@ -149,7 +149,7 @@ window.onload = function () {
             } catch (e) {
                 console.log(e);
             }
-            console.log(isLiked);
+            
             if(isLiked){
                 plusstring = `
                 <div class="card" data-store_id="${element.store_id}">
@@ -163,6 +163,7 @@ window.onload = function () {
                         <div>
                             <h5>조회수 : ${element.views}</h5>
                             <h5>좋아요 수 : ${element.likes_num}</h5>
+                            <h5>거리 : ${element.distance} m </h5>
                         </div>
                         <ion-icon name="thumbs-up-sharp" class="liked"></ion-icon>
                         <ion-icon name="thumbs-up-outline" class="notliked hidden"></ion-icon>
@@ -182,6 +183,7 @@ window.onload = function () {
                         <div>
                             <h5>조회수 : ${element.views}</h5>
                             <h5>좋아요 수 : ${element.likes_num}</h5>
+                            <h5>거리 : ${element.distance} m </h5>
                         </div>
                         <ion-icon name="thumbs-up-sharp" class="liked hidden"></ion-icon>
                         <ion-icon name="thumbs-up-outline" class="notliked"></ion-icon>
@@ -288,7 +290,7 @@ window.onload = function () {
                 }
                 else if (keyword) {
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}/keyword/${keyword}`;
-                    searchstring = `\'집 주변 ${distance}m\', 키워드 : \'${category}\'로 검색한 결과`
+                    searchstring = `\'집 주변 ${distance}m\', 키워드 : \'${keyword}\'로 검색한 결과`
                 } else {
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}`;
                     searchstring = `\'집 주변 ${distance}m\' 로 검색한 결과`

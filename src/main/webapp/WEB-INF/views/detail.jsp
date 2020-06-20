@@ -91,7 +91,7 @@
                     <c:out value="${detail.category}" /></br>
                     주소 :
                     <c:out value="${detail.address}" /></br>
-                    집에서부터 거리 : ${detail.distance}</br>
+                    집에서부터 거리 : ${detail.distance} m </br>
                     조회 수  :  ${detail.views}</br>
                     좋아요 수 : ${detail.likes_num}</br>
                 </p>

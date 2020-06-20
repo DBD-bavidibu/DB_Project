@@ -49,6 +49,7 @@
                         <li>500</li>
                         <li>1000</li>
                         <li>2000</li>
+                        <li>5000</li>
                     </ul>
                 </div>
                 <div class="dropbox-container">
