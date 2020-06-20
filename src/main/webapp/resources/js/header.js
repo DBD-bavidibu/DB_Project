@@ -24,6 +24,7 @@ window.onload = function () {
         if (localStorage.getItem('user_id')) {
             return true;
         } else {
+        	location.href="/login";
             return false;
         }
     }
