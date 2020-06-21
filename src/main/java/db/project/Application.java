@@ -18,8 +18,10 @@ public class Application {
         InitDB initDB=new InitDB();
 //        initDB.dropTable();       //테이블 삭제
 //        initDB.createTables();    //테이블 생성
-//        initDB.insertCities();      //City tupes 생성
+//        initDB.insertCities();      //City tuples 생성
 //        initDB.insertStores();      //Store tuples 생성
+//         initDB.insertUsers();		//user tuples 생성	
+//         initDB.insertLikes();		//like tuples 생성 + view 생성
     }
 
     //SQL Session Factory 설정

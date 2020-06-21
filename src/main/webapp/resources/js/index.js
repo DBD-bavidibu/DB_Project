@@ -313,12 +313,12 @@ window.onload = function () {
         } else if (location) {
             if (category) {
                 category = encodeURIComponent(category);
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}/category/${category}`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}/category/${category}`
             } else if (keyword) {
                 keyword = encodeURIComponent(keyword);
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}/keyword/${keyword}`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}/keyword/${keyword}`
             } else {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}`
             }
         }
 

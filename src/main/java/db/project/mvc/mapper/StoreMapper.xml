@@ -114,7 +114,7 @@
     </select>
 
     <select id="getCategoryList" resultType="String">
-        select distinct category from stores;
+        select distinct category from stores order by category;
     </select>
 
     <select id="loginUser" parameterType="String" resultType="boolean">

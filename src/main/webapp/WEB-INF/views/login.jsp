@@ -30,9 +30,6 @@
 
             <input type="submit" class="btn login-submit" value="완료"></button>
             <a href="./register" class="btn" value="Register">회원가입</a>
-            <div class="more">
-                <a href="./searchUser">아이디/비밀번호 찾기</a>
-            </div>
         </form>
     </div>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>

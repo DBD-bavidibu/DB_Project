@@ -36,6 +36,9 @@
                     <a href="./showbytable">
                         <ion-icon name="arrow-forward-outline"></ion-icon> 찜한 목록 확인
                     </a>
+                    <a href="./">
+                        <ion-icon name="arrow-forward-outline"></ion-icon> 홈으로
+                    </a>
                 </div>
                 <img src="./img/background.jpg" alt="">
                 <h5>(나의 현재 위치)</h5>

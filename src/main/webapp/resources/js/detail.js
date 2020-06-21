@@ -2,7 +2,7 @@
 $(document).ready(function () {
     let isLiked;
     try {
-        isLiked = axios({ method: 'get', url: 'http://localhost:8080/isLiked/1/'+store_id});
+        isLiked = axios({ method: 'get', url: `http://localhost:8080/isLiked/${localStorage.getItem('user_id')}/`+store_id});
         isLiked = isLiked.data;
     } catch (e) {
         console.log(e);
@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(".liked").on("click",async function(){
         let response;
         try{
-            response = await axios({method:'get',url:'http://localhost:8080/deleteLike/1/'+store_id});
+            response = await axios({method:'get',url:`http://localhost:8080/deleteLike/${localStorage.getItem('user_id')}/`+store_id});
         }
         catch (e){
             console.log(e);
@@ -31,7 +31,7 @@ $(document).ready(function () {
     $(".unliked").on("click",async function(){
         let response;
         try {
-            response = await axios({method: 'get', url: 'http://localhost:8080/insertLike/1/' + store_id});
+            response = await axios({method: 'get', url: `http://localhost:8080/insertLike/${localStorage.getItem('user_id')}/` + store_id});
         }
         catch(e){
             console.log(e);
