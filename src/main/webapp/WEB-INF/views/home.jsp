@@ -78,7 +78,7 @@
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
                     <ul class="dropbox-list" id="category">
-                        <li>지정안함</li>
+                        <li>지정 안함</li>
                     </ul>
                 </div>
             </div>

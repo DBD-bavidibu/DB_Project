@@ -3,8 +3,8 @@ window.onload = function () {
     function headerinfo() {
         let header = document.querySelector('.header-container');
         let logined = checklogin();
-        let logincom = header.querySelector('.oklogin');
-        let notlogincom = header.querySelectorAll('.notlogin');
+        let logincom = header.querySelector('.not-logined');
+        let notlogincom = header.querySelectorAll('.logined');
 
         if (logined) {
             logincom.classList.add('hidden');

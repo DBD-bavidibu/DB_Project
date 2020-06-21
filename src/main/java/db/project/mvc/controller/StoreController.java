@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.net.URLDecoder;
 import java.util.List;
 
 @Controller
@@ -57,10 +58,10 @@ public class StoreController {
 
 //  처음 시작될 때 이거 부릅니다.
     @CrossOrigin(origins="http://localhost")
-    @RequestMapping(value="/storeList")
+    @RequestMapping(value="/storeList/{userID}")
     @ResponseBody
-    private List<StoreVO> storeList_default() throws Exception{
-    	List<StoreVO> stores = storeService.storeList();
+    private List<StoreVO> storeList_default(@PathVariable(value="userID") int userID) throws Exception{
+    	List<StoreVO> stores = storeService.storeList(userID);
 //        System.out.println(stores);
     	return stores;
     }
@@ -89,7 +90,9 @@ public class StoreController {
     @RequestMapping("/storeList/home/{distance}/user/{userID}/category/{category}")
     @ResponseBody
     private List<StoreVO> storeList_HomeDistanceWithCategory(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
-        List<StoreVO> stores=storeService.storeList_HomeDistanceWithCategory(distance,userID,category);
+        category = URLDecoder.decode(category, "UTF-8");
+        System.out.println(category);
+    	List<StoreVO> stores=storeService.storeList_HomeDistanceWithCategory(distance,userID,category);
         return stores;
     }
 
@@ -98,7 +101,8 @@ public class StoreController {
     @RequestMapping("/storeList/home/{distance}/user/{userID}/keyword/{keyword}")
     @ResponseBody
     private List<StoreVO> storeList_HomeDistanceWithKeyword(@PathVariable(value="distance") int distance, @PathVariable(value="userID") int userID, @PathVariable(value="keyword") String keyword, Model model) throws Exception{
-        List<StoreVO> stores = storeService.storeList_HomeDistanceWithKeyword(distance,userID,keyword);
+    	keyword = URLDecoder.decode(keyword, "UTF-8");
+    	List<StoreVO> stores = storeService.storeList_HomeDistanceWithKeyword(distance,userID,keyword);
         return stores;
     }
 
@@ -115,7 +119,8 @@ public class StoreController {
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}/category/{category}")
     @ResponseBody
     private List<StoreVO> storeList_CityWithCategory(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID, @PathVariable(value="category") String category, Model model) throws Exception{
-        List<StoreVO> stores=storeService.storeList_CityWithCategory(city_code,userID,category);
+    	category = URLDecoder.decode(category, "UTF-8");
+    	List<StoreVO> stores=storeService.storeList_CityWithCategory(city_code,userID,category);
         return stores;
     }
 
@@ -123,7 +128,8 @@ public class StoreController {
     @RequestMapping("/storeList/city/{city_code}/userID/{userID}/keyword/{keyword}")
     @ResponseBody
     private List<StoreVO> storeList_CityWithKeyword(@PathVariable(value="city_code") int city_code,@PathVariable(value="userID") int userID,  @PathVariable(value="keyword") String keyword,Model model) throws Exception {
-        List<StoreVO> stores= storeService.storeList_CityWithKeyword(city_code,userID,keyword);
+    	keyword = URLDecoder.decode(keyword, "UTF-8");
+    	List<StoreVO> stores= storeService.storeList_CityWithKeyword(city_code,userID,keyword);
         return stores;
     }
 
@@ -214,7 +220,8 @@ public class StoreController {
         System.out.println(isSuccess);
         String myjson;
         if(isSuccess) {
-        	myjson = "{ \"result\" : \"ok\"}";
+        	int user_id = storeService.getUserid(email, password);
+        	myjson = "{ \"result\" : \"ok\", \"user_id\":\"" + user_id+"\"}";
         }else {
         	myjson = "{ \"result\" : \"no\"}";
         }
@@ -250,14 +257,31 @@ public class StoreController {
     }
     
     //회원 정보 수정
-    @RequestMapping(value = "updateUser/{userID}/name/{userName}/email/{email}/pw/{password}/PH/{phoneNumber}/latitude/{latitude}/longitude/{longitude}")
-    private void updateUser(@PathVariable(value="userID") int user_id,@PathVariable(value ="userName") String user_name, @PathVariable(value="email") String email, @PathVariable(value="password") String password,@PathVariable(value = "phoneNumber") String phone_number,@PathVariable(value="latitude") float latitude, @PathVariable(value = "longitude") float longitude, Model model) throws Exception {
-        model.addAttribute("isSuccessed",storeService.updateUser(user_id,user_name,email,password,phone_number,latitude,longitude));
+    @CrossOrigin(origins="http://localhost")
+    @RequestMapping(value = "/UpdateUser", method = RequestMethod.POST)
+    @ResponseBody
+    private void updateUser(HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
+    	int user_id = Integer.valueOf(httpServletRequest.getParameter("user_id"));
+    	String user_name = httpServletRequest.getParameter("user_name");
+    	float latitude = Float.valueOf(httpServletRequest.getParameter("latitude"));
+    	float longitude =  Float.valueOf(httpServletRequest.getParameter("longitude"));
+    	String password = httpServletRequest.getParameter("password");
+    	String email = httpServletRequest.getParameter("email");
+    	String phone_number = httpServletRequest.getParameter("phone_number");
+    	 boolean isSuccess =storeService.updateUser(user_id,user_name,email,password,phone_number,latitude,longitude);
+    	 String myjson;
+         if(isSuccess) {
+         	myjson = "{ \"result\" : \"ok\"}";
+         }else {
+         	myjson = "{ \"result\" : \"no\"}";
+         }
+         response.getWriter().print(myjson);
     }
 
     //회원 탈퇴
-    @RequestMapping(value = "deleteUser/{userID}/{password}")
-    private void deleteuser(@PathVariable(value = "userID") int user_id,@PathVariable(value = "password") String password) throws Exception{
-        storeService.deleteUser(user_id,password);
+    @CrossOrigin(origins="http://localhost")
+    @RequestMapping(value = "deleteUser/{userID}")
+    private void deleteuser(@PathVariable(value = "userID") int user_id) throws Exception{
+        storeService.deleteUser(user_id);
     }
 }

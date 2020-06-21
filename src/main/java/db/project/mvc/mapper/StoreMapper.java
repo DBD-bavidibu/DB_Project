@@ -19,7 +19,7 @@ public interface StoreMapper {
 
     int updateStoreViews(int storeID) throws Exception;
 
-    List<StoreVO> storeList() throws Exception;
+    List<StoreVO> storeList(@Param("user_id") int user_id) throws Exception;
 
     List<StoreVO> storeList_HomeDistance(@Param("distance") int distance,
                                          @Param("userID") int userID) throws Exception;
@@ -65,6 +65,8 @@ public interface StoreMapper {
     List<String> getCategoryList() throws Exception;
 
     boolean loginUser(@Param("email") String email, @Param("password") String password) throws Exception;
+    
+    int getUserid(@Param("email") String email, @Param("password") String password) throws Exception;
 
     boolean createUser(@Param("user_name") String user_name,
                        @Param("email") String email,
@@ -81,6 +83,5 @@ public interface StoreMapper {
                        @Param("latitude") float latitude,
                        @Param("longitude") float longitude) throws Exception;
 
-    int deleteUser(@Param("user_id") int user_id,
-                   @Param("password") String password) throws Exception;
+    int deleteUser(@Param("user_id") int user_id) throws Exception;
 }

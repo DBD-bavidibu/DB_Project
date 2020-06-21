@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/stylesheets/mypage.css"  type="text/css">
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
     <title>Document</title>
 </head>
 
@@ -28,10 +30,10 @@
                     <a href="./updateUser">
                         <ion-icon name="arrow-forward-outline"></ion-icon> 회원 정보 수정
                     </a>
-                    <a href="#">
+                    <a href="#" id="delUser">
                         <ion-icon name="arrow-forward-outline"></ion-icon> 회원 탈퇴
                     </a>
-                    <a href="./zimlist">
+                    <a href="./showbytable">
                         <ion-icon name="arrow-forward-outline"></ion-icon> 찜한 목록 확인
                     </a>
                 </div>

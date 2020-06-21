@@ -21,8 +21,8 @@ public class StoreService {
     }
 
     // 모든 가맹점 정보들을 리스트로 가져옴
-    public List<StoreVO> storeList() throws Exception{
-        return storeMapper.storeList();
+    public List<StoreVO> storeList(int userid) throws Exception{
+        return storeMapper.storeList(userid);
     }
 
     // 가맹점의 상세정보를 가져옴
@@ -103,6 +103,11 @@ public class StoreService {
     public boolean loginUser(String email, String password) throws Exception{
         return storeMapper.loginUser(email,password);
     }
+    
+    public int getUserid(String email, String password) throws Exception{
+    	return storeMapper.getUserid(email, password);
+    }
+    
     public boolean createUser(String user_name,String email,String password,String phone_number,float latitude,float longitude) throws Exception{
         return storeMapper.createUser(user_name,email,password,phone_number,latitude,longitude);
     }
@@ -111,7 +116,7 @@ public class StoreService {
         return storeMapper.updateUser(user_id,user_name,email,password,phone_number,latitude,longitude);
     }
 
-    public int deleteUser(int user_id,String password) throws Exception{
-        return storeMapper.deleteUser(user_id,password);
+    public int deleteUser(int user_id) throws Exception{
+        return storeMapper.deleteUser(user_id);
     }
 }

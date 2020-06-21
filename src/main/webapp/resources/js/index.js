@@ -10,7 +10,7 @@ window.onload = function () {
         });
         let storeList;
         try{
-            storeList = await axios({method:'get',url:'http://localhost:8080/TopTenViewsStoreList/1'});
+            storeList = await axios({method:'get',url:`http://localhost:8080/TopTenViewsStoreList/${localStorage.getItem('user_id')}`});
         }
         catch(e) {
             console.log(e);
@@ -28,7 +28,7 @@ window.onload = function () {
         });
         let storeList;
         try{
-            storeList = await axios({method:'get',url:'http://localhost:8080/TopTenLikesStoreList/1'});
+            storeList = await axios({method:'get',url:`http://localhost:8080/TopTenLikesStoreList/${localStorage.getItem('user_id')}`});
         }
         catch(e){
             console.log(e);
@@ -220,8 +220,9 @@ window.onload = function () {
              return title;
          });
         let response;
+        let userid = localStorage.getItem('user_id');
         try {
-            response = await axios({ method: 'get', url: 'http://localhost:8080/storeList' })
+            response = await axios({ method: 'get', url: `http://localhost:8080/storeList/${userid}`})
         } catch (e) {
             console.log(e);
             return;
@@ -291,7 +292,6 @@ window.onload = function () {
         let myquerystring = "";
         let searchstring ="";
         let userid = localStorage.getItem('user_id');
-        console.log(userid);
 
         if (((standard && distance) && location)) {
             alert("기준점 또는 도시 중에서 하나만 고르세요");
@@ -300,34 +300,33 @@ window.onload = function () {
         if (standard) {
             if (standard == "집" && distance) {
                 if (category) {
+                    category = encodeURIComponent(category);
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}/category/${category}`;
-                    searchstring = `\'집 주변 ${distance}m\', 카테고리 : \'${category}\'로 검색한 결과`
                 }
                 else if (keyword) {
+                    keyword = encodeURIComponent(keyword);
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}/keyword/${keyword}`;
-                    searchstring = `\'집 주변 ${distance}m\', 키워드 : \'${keyword}\'로 검색한 결과`
                 } else {
                     myquerystring = `http://localhost:8080/storeList/home/${distance}/user/${userid}`;
-                    searchstring = `\'집 주변 ${distance}m\' 로 검색한 결과`
                 }
             }
         } else if (location) {
-            console.log(location);
             if (category) {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}/category/${category}`
-                searchstring = `\' 도시 : ${locationtext}\', 카테고리 : \'${category}\'로 검색한 결과`
+                category = encodeURIComponent(category);
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}/category/${category}`
             } else if (keyword) {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}/keyword/${keyword}`
-                searchstring = `\'도시 : ${locationtext}\', 키워드 : \'${keyword}\'로 검색한 결과`
+                keyword = encodeURIComponent(keyword);
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}/keyword/${keyword}`
             } else {
-                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${userid}`
-                searchstring = `\'도시 : ${locationtext}\' 로 검색한 결과`
+                myquerystring = `http://localhost:8080/storeList/city/${location}/userID/${useriD}`
             }
         }
-        else {
-            myquerystring = 'http://localhost:8080/storeList';
-        }
 
+        else {
+            myquerystring = `http://localhost:8080/storeList/${userid}`;
+        }
+        
+        console.log(myquerystring);
         if (!myquerystring) {
             alert("뭔가 입력이 잘못되었어요.");
         }
@@ -335,7 +334,6 @@ window.onload = function () {
             let response;
             try {
                 response = await axios({ method: 'get', url: myquerystring });
-                console.log(response);
             } catch (e) {
                 console.log(e);
                 return;

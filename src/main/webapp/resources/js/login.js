@@ -10,8 +10,9 @@ window.onload = function () {
         }
         console.log(response.data);
         if (response.data.result == "ok") {
+        	let user_id = response.data.user_id;
             location.href = "/";
-            localStorage.setItem('user_id', 1);
+            localStorage.setItem('user_id', user_id);
         } else {
             alert("로그인 실패!");
         }

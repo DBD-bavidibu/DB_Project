@@ -13,7 +13,7 @@
     <select id="storeList" resultType="db.project.mvc.domain.StoreVO">
         select s.store_id,s.city_code,s.store_name,s.category,s.address,s.latitude,s.longitude,s.views,s.created_date , earth_distance(ll_to_earth(s.latitude,s.longitude),ll_to_earth(u.latitude,u.longitude)) as distance, likes_num
         from storeinfo s, users u
-        where u.user_id = 1
+        where u.user_id = #{user_id}
         order by views desc limit 10
     </select>
 
@@ -120,6 +120,10 @@
     <select id="loginUser" parameterType="String" resultType="boolean">
         select EXISTS (select * from users where email=#{email} and password=#{password}) as isExisted;
     </select>
+    
+    <select id="getUserid" parameterType="String" resultType="int">
+    	select user_id from users where email=#{email} and password=#{password};
+    </select>
 
     <insert id="createUser" parameterType="db.project.mvc.domain.UserVO">
         insert into users(USER_ID,USER_NAME,EMAIL,PASSWORD,PHONE_NUMBER,LATITUDE,LONGITUDE)
@@ -137,9 +141,9 @@
         where user_id=#{user_id}
     </update>
 
-    <delete id="deleteUser" parameterType="int">ke
+    <delete id="deleteUser" parameterType="int">
         delete from users
-        where user_id=#{user_id} and password=#{password}
+        where user_id=#{user_id}
     </delete>
 
 </mapper>
