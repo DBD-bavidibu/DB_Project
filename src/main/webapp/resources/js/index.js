@@ -159,7 +159,7 @@ window.onload = function () {
         for (const element of jsondata) {
             let isLiked;
             try {
-                isLiked = await axios({ method: 'get', url: `http://localhost:8080/isLiked/1/${element.store_id}` });
+                isLiked = await axios({ method: 'get', url: `http://localhost:8080/isLiked/${localStorage.getItem('user_id')}/${element.store_id}` });                
                 isLiked = isLiked.data;
             } catch (e) {
                 console.log(e);
